@@ -1,0 +1,20 @@
+.profile {
+  min-height: 120px;
+  padding: 40px 0 51px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.profile::after {
+  content: "";
+  width: 150px;
+  height: 50px;
+  border: 1px solid #fff;
+  position: absolute;
+  right: 0%;
+  top: center;
+  background-image: url(../../images/change_gallery.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
