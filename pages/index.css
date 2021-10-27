@@ -1,22 +1,18 @@
-body {
-    margin: 0;
-}
-.page {
-    max-width: 100vw;
-    min-width: 320px;
-    margin: 0 auto;
-/*     font-family: ;
-    font-style: ; */
-    color: #fff;
-    background-color: #000;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    ;
-}
+/* добавление normalize.css */
+@import url(../vendor/normalize.css);
 
-.page__element {
-    max-width: 880px;
-    box-sizing: border-box;
-    margin: 0 auto;
-}
+/* стиль всей страницы */
+@import url(../blocks/page/page.css);
+@import url(../blocks/page/__element/page__element.css);
+
+/*стиль header*/
+@import url(../blocks/header/header.css);
+@import url(../blocks/logo/logo.css);
+
+/*стиль */
+@import url(../blocks/);
+
+
+
+
+
