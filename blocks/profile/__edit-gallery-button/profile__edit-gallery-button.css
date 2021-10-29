@@ -1,0 +1,11 @@
+.profile__edit-gallery-button {
+  grid-area: add-button;
+  width: 150px;
+  height: 50px;
+  align-self: center;
+  justify-self: end;
+  border: 1px solid #fff;
+  background-image: url(../../../images/change_gallery.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}

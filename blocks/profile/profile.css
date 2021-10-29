@@ -1,20 +1,11 @@
 .profile {
   min-height: 120px;
-  padding: 40px 0 51px;
-  display: flex;
+  padding-top: 40px;
+  padding-bottom: 51px;
+  display: grid;
+  grid-template-columns: 120px fit-content(100px) max-content minmax(150px, 1fr);
+  grid-template-rows: 120px;
+  grid-template-areas:
+  "avatar info edit-button add-button";
   align-items: center;
-  position: relative;
-}
-
-.profile::after {
-  content: "";
-  width: 150px;
-  height: 50px;
-  border: 1px solid #fff;
-  position: absolute;
-  right: 0%;
-  top: center;
-  background-image: url(../../images/change_gallery.svg);
-  background-position: center;
-  background-repeat: no-repeat;
 }

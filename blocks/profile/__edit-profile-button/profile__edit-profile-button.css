@@ -1,0 +1,13 @@
+.profile__edit-profile-button {
+  grid-area: edit-button;
+  min-width: 24px;
+  min-height: 24px;
+  border: 1px solid #fff;
+  margin: 37px 18px 0 18px;
+  align-self: start;
+  background-image: url(../../../images/change_profile.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+

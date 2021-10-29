@@ -1,6 +1,10 @@
 .profile__vocation {
   margin: 0;
   font-weight: normal;
-  font-size: 1.41vw /* 18px */;
+  font-size: 18px;
   line-height: 1.21;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 500px;
 }

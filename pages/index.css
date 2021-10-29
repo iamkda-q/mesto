@@ -17,7 +17,9 @@
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__edit-profile-button/profile__edit-profile-button.css);
 @import url(../blocks/profile/__vocation/profile__vocation.css);
+@import url(../blocks/profile/__edit-gallery-button/profile__edit-gallery-button.css);
 
 /*стиль */
 @import url(../blocks/);
@@ -31,9 +33,10 @@
   margin: 0;
   padding: 0;
   display: grid;
+  justify-content: center;
   gap: 20px 17px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 361px);
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-template-rows: repeat(2, minmax(361px, auto));
   list-style: none;
  }
 
@@ -49,7 +52,7 @@
 .gallery__figure {
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr 64px;
+  grid-template-columns: 1fr 62px;
   grid-template-rows: 282px 1fr;
   grid-template-areas:
   "photo photo"

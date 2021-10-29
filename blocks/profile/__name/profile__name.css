@@ -1,19 +1,10 @@
 .profile__name {
-  margin: 0;
-  margin-bottom: 16px;
+  margin: 22px 0 8px 0;
   font-weight: 500;
-  font-size: 3.3vw /* 42px */;
+  font-size: 42px;
   line-height: 1.15;
-}
-
-.profile__name::after {
-  content: "";
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  border: 1px solid #fff;
-  margin-left: 18px;
-  background-image: url(../../../images/change_profile.svg);
-  background-position: center;
-  background-repeat: no-repeat;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 500px;
 }
