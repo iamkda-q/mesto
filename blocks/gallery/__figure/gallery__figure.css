@@ -1,0 +1,10 @@
+.gallery__figure {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 62px;
+  grid-template-rows: 282px 1fr;
+  grid-template-areas:
+  "photo photo"
+  "figcaption like";
+  row-gap: 25px;
+ }

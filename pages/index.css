@@ -21,84 +21,27 @@
 @import url(../blocks/profile/__vocation/profile__vocation.css);
 @import url(../blocks/profile/__edit-gallery-button/profile__edit-gallery-button.css);
 
+/*стиль gallery*/
+@import url(../blocks/gallery/gallery.css);
+@import url(../blocks/gallery/__list/gallery__list.css);
+@import url(../blocks/gallery/__element/gallery__element.css);
+@import url(../blocks/gallery/__figure/gallery__figure.css);
+@import url(../blocks/gallery/__photo/gallery__photo.css);
+@import url(../blocks/gallery/__figcaption/gallery__figcaption.css);
+@import url(../blocks/gallery/__like/gallery__like.css);
+
+/*стиль footer*/
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__info/footer__info.css);
+
+
 /*стиль */
+@import url(../blocks/);
+@import url(../blocks/);
+@import url(../blocks/);
 @import url(../blocks/);
 
 /* * {
   border: 1px solid red;
 }
  */
-
-.gallery__list {
-  margin: 0;
-  padding: 0;
-  display: grid;
-  justify-content: center;
-  gap: 20px 17px;
-  grid-template-columns: repeat(auto-fit, 282px);
-  grid-template-rows: repeat(2, minmax(361px, auto));
-  list-style: none;
- }
-
-.gallery__element {
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-
- }
-
-.gallery__figure {
-  margin: 0;
-  display: grid;
-  grid-template-columns: 1fr 62px;
-  grid-template-rows: 282px 1fr;
-  grid-template-areas:
-  "photo photo"
-  "figcaption like";
-  row-gap: 25px;
- }
-
- .gallery__photo {
-  grid-area: photo;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.gallery__figcaption {
-  grid-area: figcaption;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 1.21;
-  color: black;
-  margin: 0;
-  margin-left: 21px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.gallery__like {
-  grid-area: like;
-  width: 22px;
-  height: 19px;
-  align-self: center;
-  justify-self: center;
-  background-image: url(../images/like.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.footer {
-  padding: 67px 0 60px 0;
-}
-
-.footer__info {
-  margin: 0;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 1.22;
-  color: #545454;
-}
