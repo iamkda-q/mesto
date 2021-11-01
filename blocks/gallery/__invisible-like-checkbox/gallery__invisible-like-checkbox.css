@@ -1,0 +1,11 @@
+.gallery__invisible-like-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.gallery__invisible-like-checkbox:checked + .gallery__visible-like-checkbox {
+  background-image: url(../../../images/like_active.svg);
+}

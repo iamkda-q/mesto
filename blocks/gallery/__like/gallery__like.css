@@ -4,7 +4,5 @@
   height: 19px;
   align-self: center;
   justify-self: center;
-  border: none;
-  background: #fff url(../../../images/like_disable.svg) center no-repeat;
-  cursor: pointer;
+  position: relative;
 }
