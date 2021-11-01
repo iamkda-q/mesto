@@ -11,23 +11,23 @@
   position: relative;
 }
 
-.profile__edit-gallery-button:before {
+.profile__edit-gallery-button::before {
   position: absolute;
   content: '';
   border-top: 11px solid #fff;
   border-right: 1px solid #fff;
   border-bottom: 11px solid #fff;
-  border-right: 1px solid #fff;
+  border-left: 1px solid #fff;
   transform: rotate(90deg);
   top: 25%;
 }
 
-.profile__edit-gallery-button:after {
+.profile__edit-gallery-button::after {
   position: absolute;
   content: '';
   border-top: 11px solid #fff;
   border-right: 1px solid #fff;
   border-bottom: 11px solid #fff;
-  border-right: 1px solid #fff;
+  border-left: 1px solid #fff;
   top: 25%;
 }

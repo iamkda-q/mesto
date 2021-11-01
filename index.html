@@ -10,73 +10,81 @@
     <link rel="shortcut icon" href="https://img.icons8.com/color/48/000000/beach.png" type="image/x-icon">
     <link rel="stylesheet" href="./pages/index.css">
 </head>
-<body>
-    <div class="page">
-        <header class="header page__element">
-            <img src="./images/logo.svg" alt="Логотип приложения Место" class="logo header__logo">
-        </header>
-        <main class="main">
-            <section class="profile page__element">
-                <img src="./images/avatar.jpeg" alt="аватар пользователя" class="profile__avatar">
-                <div class="profile__info">
-                    <p class="profile__name">Жак-Ив Кусто</p>
-                    <p class="profile__vocation">Исследователь океана</p>
-                </div>
-                <button class="profile__edit-profile-button"></button>
-                <button class="profile__edit-gallery-button"></button>
-            </section>
+<body class="page">
+    <header class="header page__element">
+        <img src="./images/logo.svg" alt="Логотип приложения Место" class="logo header__logo">
+    </header>
+    <main class="main">
+        <section class="profile page__element">
+            <img src="./images/avatar.jpeg" alt="аватар пользователя" class="profile__avatar">
+            <div class="profile__info">
+                <p class="profile__name">Жак-Ив Кусто</p>
+                <p class="profile__vocation">Исследователь океана</p>
+            </div>
+            <button class="profile__edit-profile-button"></button>
+            <button class="profile__edit-gallery-button"></button>
+        </section>
 
-            <section class="gallery page__element">
-                <ul class="gallery__list">
-                    <li class="gallery__element">
-                        <figure class="gallery__figure">
-                            <img src="./images/karach.png" alt="" class="gallery__photo">
-                            <figcaption class="gallery__figcaption">Карачаевск</figcaption>
-                            <button class="gallery__like"></button>
-                        </figure>
-                    </li>
-                    <li class="gallery__element">
-                        <figure class="gallery__figure">
-                            <img src="./images/karach.png" alt="" class="gallery__photo">
-                            <figcaption class="gallery__figcaption">Гора Эльбрус</figcaption>
-                            <button class="gallery__like"></button>
-                        </figure>
-                    </li>
-                    <li class="gallery__element">
-                        <figure class="gallery__figure">
-                            <img src="./images/karach.png" alt="" class="gallery__photo">
-                            <figcaption class="gallery__figcaption">Домбай</figcaption>
-                            <button class="gallery__like"></button>
-                        </figure>
-                    </li>
-                    <li class="gallery__element">
-                        <figure class="gallery__figure">
-                            <img src="./images/karach.png" alt="" class="gallery__photo">
-                            <figcaption class="gallery__figcaption">Гора Эльбрус</figcaption>
-                            <button class="gallery__like"></button>
-                        </figure>
-                    </li>
-                    <li class="gallery__element">
-                        <figure class="gallery__figure">
-                            <img src="./images/karach.png" alt="" class="gallery__photo">
-                            <figcaption class="gallery__figcaption">Домбай</figcaption>
-                            <button class="gallery__like"></button>
-                        </figure>
-                    </li>
-                    <li class="gallery__element">
-                        <figure class="gallery__figure">
-                            <img src="./images/karach.png" alt="" class="gallery__photo">
-                            <figcaption class="gallery__figcaption">Карачаево-Черкесия</figcaption>
-                            <button class="gallery__like"></button>
-                        </figure>
-                    </li>
-                </ul>
-            </section>
-        </main>
+        <section class="gallery page__element">
+            <ul class="gallery__list">
+                <li class="gallery__element">
+                    <figure class="gallery__figure">
+                        <img src="./images/karach.png" alt="" class="gallery__photo">
+                        <figcaption class="gallery__figcaption">Карачаевск</figcaption>
+                        <button class="gallery__like"></button>
+                    </figure>
+                </li>
+                <li class="gallery__element">
+                    <figure class="gallery__figure">
+                        <img src="./images/karach.png" alt="" class="gallery__photo">
+                        <figcaption class="gallery__figcaption">Гора Эльбрус</figcaption>
+                        <button class="gallery__like"></button>
+                    </figure>
+                </li>
+                <li class="gallery__element">
+                    <figure class="gallery__figure">
+                        <img src="./images/karach.png" alt="" class="gallery__photo">
+                        <figcaption class="gallery__figcaption">Домбай</figcaption>
+                        <button class="gallery__like"></button>
+                    </figure>
+                </li>
+                <li class="gallery__element">
+                    <figure class="gallery__figure">
+                        <img src="./images/karach.png" alt="" class="gallery__photo">
+                        <figcaption class="gallery__figcaption">Гора Эльбрус</figcaption>
+                        <button class="gallery__like"></button>
+                    </figure>
+                </li>
+                <li class="gallery__element">
+                    <figure class="gallery__figure">
+                        <img src="./images/karach.png" alt="" class="gallery__photo">
+                        <figcaption class="gallery__figcaption">Домбай</figcaption>
+                        <button class="gallery__like"></button>
+                    </figure>
+                </li>
+                <li class="gallery__element">
+                    <figure class="gallery__figure">
+                        <img src="./images/karach.png" alt="" class="gallery__photo">
+                        <figcaption class="gallery__figcaption">Карачаево-Черкесия</figcaption>
+                        <button class="gallery__like"></button>
+                    </figure>
+                </li>
+            </ul>
+        </section>
+    </main>
 
-        <footer class="footer page__element">
-            <p class="footer__info">&copy;2020 Mesto Russia</p>
-        </footer>
+    <div class="popup hidden">
+      <section class="popup__window">
+        <p class="popup__option">Редактировать профиль</p>
+        <p class="popup__form popup__form_parameter_name">Жак-Ив Кусто</p>
+        <p class="popup__form popup__form_parameter_vocation">Исследователь океана</p>
+        <button class="popup__save-button">Сохранить</button>
+        <button class="popup__close-button"></button>
+      </section>
     </div>
+
+    <footer class="footer page__element">
+        <p class="footer__info">&copy;2020 Mesto Russia</p>
+    </footer>
 </body>
 </html>
