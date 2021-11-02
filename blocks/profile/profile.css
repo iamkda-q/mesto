@@ -3,9 +3,23 @@
   padding-top: 40px;
   padding-bottom: 51px;
   display: grid;
-  grid-template-columns: 120px fit-content(100px) max-content minmax(150px, 1fr);
+  grid-template-columns: 120px fit-content(500px) max-content minmax(150px, 1fr);
   grid-template-rows: 120px;
   grid-template-areas:
   "avatar info edit-button add-button";
   align-items: center;
+}
+
+@media screen and (max-width: 660px) {
+  .profile {
+    padding-top: 42px;
+    padding-bottom: 36px;
+    grid-template-columns: 1fr 24px;
+    grid-template-rows: 120px minmax(min-content, max-content) 50px;
+    grid-template-areas:
+    "avatar avatar"
+    "info edit-button"
+    "add-button add-button";
+    justify-items: center;
+  }
 }

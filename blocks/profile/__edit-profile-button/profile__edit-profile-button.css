@@ -9,3 +9,11 @@
   background: #000 url(../../../images/change_profile.svg) center no-repeat;
   cursor: pointer;
 }
+
+@media screen and (max-width: 660px) {
+  .profile__edit-profile-button {
+    margin: 0;
+    margin-top: 16px;
+    justify-self: start;
+  }
+}

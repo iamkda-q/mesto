@@ -26,3 +26,10 @@
 .profile__edit-gallery-button::after {
   transform: rotate(90deg);
 }
+
+@media screen and (max-width: 660px) {
+  .profile__edit-gallery-button  {
+    width: 282px;
+    justify-self: center;
+  }
+}
