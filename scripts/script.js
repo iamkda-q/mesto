@@ -6,16 +6,17 @@ const popupCloseButton = document.querySelector('.popup__close-button');
 const popup = document.querySelector('.popup');
 const profileName = document.querySelector('.profile__name');
 const profileVocation = document.querySelector('.profile__vocation');
+const formName = document.querySelector('.popup__text_parameter_name');
+const formVocation = document.querySelector('.popup__text_parameter_vocation');
 
-/* устанавливаем в форму значения из профиля */
-let formName = document.querySelector('.popup__text_parameter_name');
-formName.setAttribute('value', profileName.textContent);
-let formVocation = document.querySelector('.popup__text_parameter_vocation');
-formVocation.setAttribute('value', profileVocation.textContent);
+/* блок появления popupa и установка в форму значений из профиля при его загрузке*/
+showEditPopup = () => {
+  formName.value = profileName.textContent;
+  formVocation.value = profileVocation.textContent;
+  popup.classList.remove('page__hidden');
+};
 
-/* Блок появления popupa */
-showEditPopup = () => popup.classList.remove('hidden');
-closeEditPopup = () => popup.classList.add('hidden');
+closeEditPopup = () => popup.classList.add('page__hidden');
 
 editProfileButton.addEventListener('click', showEditPopup);
 popupCloseButton.addEventListener('click', closeEditPopup);
@@ -24,14 +25,9 @@ popupCloseButton.addEventListener('click', closeEditPopup);
 let editForm = document.querySelector('.popup__window'); //находим форму
 function formSubmitHandler (evt) {
     evt.preventDefault(); // отменяет стандартную отправку формы.
-    formName = document.querySelector('.popup__text_parameter_name').value;
-    formVocation = document.querySelector('.popup__text_parameter_vocation').value;
-    profileName.textContent = formName;
-    profileVocation.textContent = formVocation;
+    profileName.textContent = formName.value;
+    profileVocation.textContent = formVocation.value;
     closeEditPopup();
 }
 
 editForm.addEventListener('submit', formSubmitHandler);
-
-/* Обработчик события простановки лайка */
-

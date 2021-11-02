@@ -11,26 +11,22 @@
   display: flex;
 }
 
-.popup__close-button::before {
+.popup__close-button::before,
+.popup__close-button::after {
+  content: '';
   position: absolute;
   top: calc(50% - 1px);
   left: calc(50% - 21px);
-  content: '';
   border-top: 1px solid #fff;
   border-right: 21px solid #fff;
   border-bottom: 1px solid #fff;
   border-left: 21px solid #fff;
+}
+
+.popup__close-button::before {
   transform: rotate(-45deg);
 }
 
 .popup__close-button::after {
-  position: absolute;
-  top: calc(50% - 1px);
-  left: calc(50% - 21px);
-  content: '';
-  border-top: 1px solid #fff;
-  border-right: 21px solid #fff;
-  border-bottom: 1px solid #fff;
-  border-left: 21px solid #fff;
   transform: rotate(45deg);
 }

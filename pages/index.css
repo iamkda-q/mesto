@@ -4,9 +4,8 @@
 /* шрифты*/
 @import url(../fonts/fonts.css);
 
-/* стиль всей страницы */
+/* стиль страницы */
 @import url(../blocks/page/page.css);
-@import url(../blocks/page/__element/page__element.css);
 
 /*стиль header*/
 @import url(../blocks/header/header.css);
@@ -49,13 +48,16 @@
 @import url(../blocks/popup/__save-button/popup__save-button.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 
-/*стиль hidden*/
-@import url(../blocks/hidden/hidden.css);
-
-/*стиль fieldset*/
-@import url(../blocks/fieldset/fieldset.css);
-
+/*стили миксов*/
+@import url(../blocks/page/__element/page__element.css);
+@import url(../blocks/page/__fieldset/page__fieldset.css);
+@import url(../blocks/page/__hidden/page__hidden.css);
+@import url(../blocks/page/__hover/page__hover.css);
+@import url(../blocks/page/__hover/_shade/page__hover_shade_dark.css);
+@import url(../blocks/page/__hover/_shade/page__hover_shade_light.css);
+@import url(../blocks/page/__hover/_shade/page__hover_shade_super-dark.css);
 /*стиль */
+
 /* @import url(../blocks/);
 @import url(../blocks/);
 @import url(../blocks/);
