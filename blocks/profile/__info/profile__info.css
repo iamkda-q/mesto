@@ -4,6 +4,7 @@
   white-space: nowrap;
   width: 40vw;
   max-width: 500px;
+  vertical-align: top;
 }
 
 @media screen and (max-width: 660px) {

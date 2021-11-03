@@ -1,4 +1,6 @@
 .profile__edit-profile-button {
+  display: inline-block;
+  vertical-align: 9px;
   padding: 0;
   width: 24px;
   height: 24px;

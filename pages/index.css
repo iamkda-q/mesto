@@ -32,8 +32,6 @@
 @import url(../blocks/gallery/__photo/gallery__photo.css);
 @import url(../blocks/gallery/__figcaption/gallery__figcaption.css);
 @import url(../blocks/gallery/__like/gallery__like.css);
-@import url(../blocks/gallery/__invisible-like-checkbox/gallery__invisible-like-checkbox.css);
-@import url(../blocks/gallery/__visible-like-checkbox/gallery__visible-like-checkbox.css);
 
 /*стиль footer*/
 @import url(../blocks/footer/footer.css);
