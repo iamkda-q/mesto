@@ -1,6 +1,6 @@
 .profile__edit-profile-button {
-  display: inline-block;
-  vertical-align: 9px;
+  display: inline-block; /* для возможности позиционирвания по вертикали */
+  vertical-align: 9px; /* позиционирование по вертикали */
   padding: 0;
   width: 24px;
   height: 24px;

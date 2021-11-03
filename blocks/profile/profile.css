@@ -1,14 +1,11 @@
 .profile {
-  max-width: 880px;
   min-height: 120px;
   display: grid;
   grid-template-columns: 120px 1fr minmax(150px, 1fr);
   grid-template-rows: 120px;
   grid-template-areas:
   "avatar info add-button";
-  column-gap: 2.3vw;
-  align-items: center;
-  justify-content: center;
+  column-gap: 2.3vw; /* тема! */
 }
 
 @media screen and (max-width: 660px) {

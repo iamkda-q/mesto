@@ -20,8 +20,8 @@
   border-right: 1px solid #fff;
   border-bottom: 11px solid #fff;
   border-left: 1px solid #fff;
-  top: calc(50% - 11px);
-  left: calc(50% - 1px);
+  top: calc(50% - 11px); /* отступ в половину блока минус половина суммарной толщины вертикальных бордеров (позиционирование по центру)*/
+  left: calc(50% - 1px); /* аналогично */
 }
 
 .profile__edit-gallery-button::after {
