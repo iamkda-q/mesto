@@ -37,7 +37,6 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__info/footer__info.css);
 
-
 /*стиль popup*/
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
@@ -57,14 +56,3 @@
 @import url(../blocks/page/__hover/_shade/page__hover_shade_dark.css);
 @import url(../blocks/page/__hover/_shade/page__hover_shade_light.css);
 @import url(../blocks/page/__hover/_shade/page__hover_shade_super-dark.css);
-/*стиль */
-
-/* @import url(../blocks/);
-@import url(../blocks/);
-@import url(../blocks/);
-@import url(../blocks/); */
-
-/* * {
-  border: 1px solid red;
-}
- */

@@ -7,7 +7,7 @@
 
 @media screen and (max-width: 920px) {
   .logo {
-    margin-left: 27px;
+    margin-left: 27px; /* чтобы не прилипал к краю экрана */
   }
 }
 @media screen and (max-width: 660px) {

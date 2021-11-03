@@ -1,10 +1,9 @@
 .profile__info {
   grid-area: info;
   height: 100%;
-  white-space: nowrap;
-  width: 40vw;
-  max-width: 500px;
-  vertical-align: top;
+  white-space: nowrap; /* чтобы кнопка edit не перескакивала при уменьшении разрешения экрана */
+  width: 40vw; /* для скрытия переполнения слишком длинного name или vocation */
+  max-width: 500px; /* для ограничения роста width на больших разрешениях */
 }
 
 @media screen and (max-width: 660px) {

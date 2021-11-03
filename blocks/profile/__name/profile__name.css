@@ -4,10 +4,10 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 1.15;
-  display: inline-block;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  display: inline-block; /* чтобы кнопка edit_profile встала справа, а не снизу */
+  white-space: nowrap; /* вроде как наследуется из info, чтобы текст не переносился на следующую строку */
+  text-overflow: ellipsis; /* не работает без overflow hidden */
+  overflow: hidden; /* не работает без ограничения ширины */
   max-width: 100%;
 }
 
