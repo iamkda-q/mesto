@@ -1,11 +1,15 @@
 .profile__info {
   grid-area: info;
   height: 100%;
-  margin-left: 30px;
+  white-space: nowrap;
+  width: 40vw;
+  max-width: 500px;
 }
 
 @media screen and (max-width: 660px) {
   .profile__info {
-    margin: 0;
+    width: 90vw;
+    max-width: 210px;
   }
 }
+

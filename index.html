@@ -11,34 +11,34 @@
     <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
-    <header class="header page__element">
+    <header class="header">
         <a href="#" class="header__link page__hover page__hover_shade_super-dark">
             <img src="./images/logo.svg" alt="Логотип приложения Место" class="logo header__logo">
         </a>
     </header>
     <main class="main">
-        <section class="profile page__element">
+        <section class="profile">
             <img src="./images/avatar.jpeg" alt="аватар пользователя" class="profile__avatar">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button type="button" class="profile__edit-profile-button page__hover page__hover_shade_dark"></button>
                 <h2 class="profile__vocation">Исследователь океана</h2>
             </div>
-            <button type="button" class="profile__edit-profile-button page__hover page__hover_shade_dark"></button>
             <button type="button" class="profile__edit-gallery-button page__hover page__hover_shade_dark"></button>
         </section>
 
-        <section class="gallery page__element">
+        <section class="gallery">
             <ul class="gallery__list">
                 <li class="gallery__element">
                     <figure class="gallery__figure">
                         <img src="./images/karach.png" alt="" class="gallery__photo">
                         <figcaption class="gallery__figcaption">Карачаевск</figcaption>
                         <form class="gallery__like">
-                            <label>
-                                <input type="checkbox" class="gallery__invisible-like-checkbox"></input>
-                                <span class="gallery__visible-like-checkbox page__hover page__hover_shade_super-dark"></span>
-                            </label>
-                        </form>
+                          <label>
+                              <input type="checkbox" class="gallery__invisible-like-checkbox"></input>
+                              <span class="gallery__visible-like-checkbox page__hover page__hover_shade_super-dark"></span>
+                          </label>
+                      </form>
                     </figure>
                 </li>
                 <li class="gallery__element">
@@ -119,7 +119,7 @@
         </form>
     </div>
 
-    <footer class="footer page__element">
+    <footer class="footer">
         <p class="footer__info">&copy;2020 Mesto Russia</p>
     </footer>
     <script src="./scripts/script.js"></script>

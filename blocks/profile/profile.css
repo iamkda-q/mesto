@@ -2,22 +2,23 @@
   max-width: 880px;
   min-height: 120px;
   display: grid;
-  grid-template-columns: 120px fit-content(500px) max-content minmax(150px, 1fr);
+  grid-template-columns: 120px 1fr minmax(150px, 1fr);
   grid-template-rows: 120px;
   grid-template-areas:
-  "avatar info edit-button add-button";
+  "avatar info add-button";
+  column-gap: 2.3vw;
   align-items: center;
   justify-content: center;
 }
 
 @media screen and (max-width: 660px) {
   .profile {
-    grid-template-columns: calc(282px - 18px) 18px;
+    grid-template-columns: 1fr;
     grid-template-rows: 120px minmax(min-content, max-content) 50px;
     grid-template-areas:
-    "avatar avatar"
-    "info edit-button"
-    "add-button add-button";
+    "avatar"
+    "info"
+    "add-button";
     justify-items: center;
   }
 }
