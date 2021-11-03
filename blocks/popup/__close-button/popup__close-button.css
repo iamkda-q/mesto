@@ -30,3 +30,21 @@
 .popup__close-button::after {
   transform: rotate(45deg);
 }
+
+@media screen and (max-width: 560px) {
+  .popup__close-button {
+    width: 20px;
+    height: 20px;
+    bottom: calc(100% + 16px);
+    left: calc(100% - 20px);;
+  }
+
+  .popup__close-button::before,
+  .popup__close-button::after {
+    top: calc(50% - 1px);
+    left: calc(50% - 14px);
+    border-right: 14px solid #fff;
+    border-left: 14px solid #fff;
+  }
+}
+

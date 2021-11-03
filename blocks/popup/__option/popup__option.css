@@ -6,3 +6,11 @@
   line-height: 1.21;
   color: #000;
 }
+
+@media screen and (max-width: 560px) {
+  .popup__option {
+    font-size: 18px;
+    line-height: 1.22;
+    margin-bottom: 75px;
+  }
+}

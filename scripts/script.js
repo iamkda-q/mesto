@@ -13,16 +13,16 @@ const formVocation = document.querySelector('.popup__text_parameter_vocation');
 showEditPopup = () => {
   formName.value = profileName.textContent;
   formVocation.value = profileVocation.textContent;
-  popup.classList.remove('page__hidden');
+  popup.classList.add('popup_opened');
 };
 
-closeEditPopup = () => popup.classList.add('page__hidden');
+closeEditPopup = () => popup.classList.remove('popup_opened');
 
 editProfileButton.addEventListener('click', showEditPopup);
 popupCloseButton.addEventListener('click', closeEditPopup);
 
 /* Обработчик изменения данных профиля */
-let editForm = document.querySelector('.popup__window'); //находим форму
+let editForm = document.querySelector('.popup__container'); //находим форму
 function formSubmitHandler (evt) {
     evt.preventDefault(); // отменяет стандартную отправку формы.
     profileName.textContent = formName.value;
