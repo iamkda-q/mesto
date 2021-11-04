@@ -8,6 +8,8 @@ const profileName = document.querySelector('.profile__name');
 const profileVocation = document.querySelector('.profile__vocation');
 const formName = document.querySelector('.popup__text_parameter_name');
 const formVocation = document.querySelector('.popup__text_parameter_vocation');
+/* Обработчик изменения данных профиля */
+let editForm = document.querySelector('.popup__container'); //находим форму
 
 /* блок появления popupa и установка в форму значений из профиля при его загрузке*/
 showEditPopup = () => {
@@ -18,16 +20,15 @@ showEditPopup = () => {
 
 closeEditPopup = () => popup.classList.remove('popup_opened');
 
-editProfileButton.addEventListener('click', showEditPopup);
-popupCloseButton.addEventListener('click', closeEditPopup);
-
-/* Обработчик изменения данных профиля */
-let editForm = document.querySelector('.popup__container'); //находим форму
 function formSubmitHandler (evt) {
     evt.preventDefault(); // отменяет стандартную отправку формы.
     profileName.textContent = formName.value;
     profileVocation.textContent = formVocation.value;
     closeEditPopup();
 }
+/* Открытие/закртыие popup */
+editProfileButton.addEventListener('click', showEditPopup);
+popupCloseButton.addEventListener('click', closeEditPopup);
 
+/* Сохранение данных о пользователе*/
 editForm.addEventListener('submit', formSubmitHandler);

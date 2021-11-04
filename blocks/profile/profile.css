@@ -1,7 +1,7 @@
 .profile {
   min-height: 120px;
   display: grid;
-  grid-template-columns: 120px 1fr minmax(150px, 1fr);
+  grid-template-columns: 120px 1fr 150px;
   grid-template-rows: 120px;
   grid-template-areas:
   "avatar info add-button";
@@ -17,5 +17,6 @@
     "info"
     "add-button";
     justify-items: center;
+    row-gap: 30px;
   }
 }

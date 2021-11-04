@@ -1,15 +1,19 @@
 .profile__info {
   grid-area: info;
-  height: 100%;
-  white-space: nowrap; /* чтобы кнопка edit не перескакивала при уменьшении разрешения экрана */
-  width: 40vw; /* для скрытия переполнения слишком длинного name или vocation */
-  max-width: 500px; /* для ограничения роста width на больших разрешениях */
+  display: grid;
+  grid-template-columns: fit-content(40vw) 1fr;
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas:
+  'name edit-profile-button'
+  'vocation .';
+  gap: 8px 18px;
 }
 
 @media screen and (max-width: 660px) {
   .profile__info {
-    width: 90vw;
-    max-width: 210px;
+    margin-left: 26px;
+    grid-template-columns: fit-content(80vw) 1fr;
+    gap: 7px 10px;
   }
 }
 

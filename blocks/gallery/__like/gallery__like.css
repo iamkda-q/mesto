@@ -2,9 +2,8 @@
   grid-area: like;
   width: 22px;
   height: 19px;
-  align-self: center;
   justify-self: center;
-  background-image: url(../../../images/like_disable.svg);
+  background: url(../../../images/like_disable.svg) no-repeat;
   cursor: pointer;
   border: none;
 }

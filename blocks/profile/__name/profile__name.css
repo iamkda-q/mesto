@@ -1,19 +1,17 @@
 .profile__name {
+  grid-area: name;
   margin: 0;
-  margin-top: 22px;
+  align-self: end;
   font-weight: 500;
   font-size: 42px;
   line-height: 1.15;
-  display: inline-block; /* чтобы кнопка edit_profile встала справа, а не снизу */
-  white-space: nowrap; /* вроде как наследуется из info, чтобы текст не переносился на следующую строку */
+  white-space: nowrap;
   text-overflow: ellipsis; /* не работает без overflow hidden */
-  overflow: hidden; /* не работает без ограничения ширины */
-  max-width: 100%;
+  overflow: hidden; /* не работает без ограничения ширины, ограничивается ширина сеткой */
 }
 
 @media screen and (max-width: 660px) {
   .profile__name {
-    margin-top: 26px;
     font-size: 27px;
     line-height: 1.22;
   }
