@@ -28,38 +28,7 @@
         </section>
 
         <section class="gallery">
-            <ul class="gallery__list">
-                <li class="gallery__element">
-                    <img src="./images/karach.png" alt="Карачаевск" class="gallery__photo">
-                    <h2 class="gallery__figcaption">Карачаевск</h2>
-                    <button type="button" class="gallery__like page__hover page__hover_shade_super-dark" aria-label></button>
-                </li>
-                <li class="gallery__element">
-                    <img src="./images/Elb.png" alt="Эльбрус" class="gallery__photo">
-                    <h2 class="gallery__figcaption">Гора Эльбрус</h2>
-                    <button type="button" class="gallery__like page__hover page__hover_shade_super-dark" aria-label></button>
-                </li>
-                <li class="gallery__element">
-                    <img src="./images/domb.png" alt="Домбай" class="gallery__photo">
-                    <h2 class="gallery__figcaption">Домбай</h2>
-                    <button type="button" class="gallery__like page__hover page__hover_shade_super-dark" aria-label></button>
-                </li>
-                <li class="gallery__element">
-                    <img src="./images/Elb.png" alt="Эльбрус" class="gallery__photo">
-                    <h2 class="gallery__figcaption">Гора Эльбрус</h2>
-                    <button type="button" class="gallery__like page__hover page__hover_shade_super-dark" aria-label></button>
-                </li>
-                <li class="gallery__element">
-                    <img src="./images/domb.png" alt="Домбай" class="gallery__photo">
-                    <h2 class="gallery__figcaption">Домбай</h2>
-                    <button type="button" class="gallery__like page__hover page__hover_shade_super-dark" aria-label></button>
-                </li>
-                <li class="gallery__element">
-                    <img src="./images/karach.png" alt="Карачаево-Черкесия" class="gallery__photo">
-                    <h2 class="gallery__figcaption">Карачаево-Черкесия</h2>
-                    <button type="button" class="gallery__like page__hover page__hover_shade_super-dark" aria-label></button>
-                </li>
-            </ul>
+            <ul class="gallery__list"></ul>
         </section>
     </main>
 
@@ -67,19 +36,50 @@
         <p class="footer__info">&copy;2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup" id="edit-profile">
         <div class="popup__container">
-              <form class="popup__form" name="popup-form">
-                  <h2 class="popup__option">Редактировать профиль</h2>
-                  <fieldset class="popup__info page__fieldset">
-                      <input type="text" class="popup__text popup__text_parameter_name" name="name">
-                      <input type="text" class="popup__text popup__text_parameter_vocation" name="vocation">
-                      <button type="submit" class="popup__save-button page__hover page__hover_shade_light">Сохранить</button>
-                  </fieldset>
-              </form>
-              <button type="button" class="popup__close-button page__hover page__hover_shade_dark" aria-label></button>
+            <form class="popup__form" name="popup-form">
+                <h2 class="popup__option">Редактировать профиль</h2>
+                <fieldset class="popup__info page__fieldset">
+                    <input type="text" class="popup__text popup__text_parameter_name" name="name">
+                    <input type="text" class="popup__text popup__text_parameter_vocation" name="vocation">
+                    <button type="submit" class="popup__save-button page__hover page__hover_shade_light">Сохранить</button>
+                </fieldset>
+            </form>
+            <button type="button" class="popup__close-button page__hover page__hover_shade_dark" aria-label></button>
         </div>
     </div>
+
+    <div class="popup" id="add-photo">
+        <div class="popup__container">
+            <form class="popup__form" name="popup-form">
+                <h2 class="popup__option">Новое место</h2>
+                <fieldset class="popup__info page__fieldset">
+                    <input type="text" class="popup__text popup__text_parameter_figcaption" name="figcaption" placeholder="Название">
+                    <input type="text" class="popup__text popup__text_parameter_photo-link" name="photo-link" placeholder="Ссылка на картинку">
+                    <button type="submit" class="popup__save-button page__hover page__hover_shade_light">Создать</button>
+                </fieldset>
+            </form>
+            <button type="button" class="popup__close-button page__hover page__hover_shade_dark" aria-label></button>
+        </div>
+    </div>
+
+    <div class="popup" id="full-photo">
+        <div class="popup__photo-container">
+            <img src="#" alt="#" class="popup__photo">
+            <p class="popup__figcaption"></p>
+            <button type="button" class="popup__close-button page__hover page__hover_shade_dark" aria-label></button>
+        </div>
+    </div>
+
+    <template id="gallery-item">
+        <li class="gallery__element">
+            <img src="#" alt="#" class="gallery__photo">
+            <h2 class="gallery__figcaption"></h2>
+            <button type="button" class="gallery__like page__hover page__hover_shade_super-dark" aria-label></button>
+            <button type="button" class="gallery__trash page__hover page__hover_shade_super-dark" aria-label></button>
+        </li>
+    </template>
     <script src="./scripts/script.js"></script>
 </body>
 </html>

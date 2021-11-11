@@ -6,4 +6,5 @@
   background: url(../../../images/like_disable.svg) no-repeat;
   cursor: pointer;
   border: none;
+  transition: 2s;
 }

@@ -1,4 +1,4 @@
 .page__hover {
   opacity: 1;
-  transition: opacity 0.2s linear;
+  transition: 0.3s linear;
 }
