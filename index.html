@@ -38,11 +38,13 @@
 
     <div class="popup popup_edit-profile">
         <div class="popup__container">
-            <form class="popup__form" name="popup-form">
+            <form class="popup__form" name="popup-form-edit-profile" novalidate>
                 <h2 class="popup__option">Редактировать профиль</h2>
                 <fieldset class="popup__info page__fieldset">
-                    <input type="text" class="popup__text popup__text_parameter_name" name="name">
-                    <input type="text" class="popup__text popup__text_parameter_vocation" name="vocation">
+                    <input id='form-name' type="text" class="popup__text popup__text_parameter_name" name="name" minlength="2" maxlength="40" required>
+                    <span class="popup__error-text form-name-error">*</span>
+                    <input id='form-vocation' type="text" class="popup__text popup__text_parameter_vocation" name="vocation" minlength="2" maxlength="200" required>
+                    <span class="popup__error-text form-vocation-error">*</span>
                     <button type="submit" class="popup__save-button page__hover page__hover_shade_light">Сохранить</button>
                 </fieldset>
             </form>
@@ -52,11 +54,14 @@
 
     <div class="popup popup_add-photo">
         <div class="popup__container">
-            <form class="popup__form" name="popup-form">
+            <form class="popup__form" name="popup-form-add-photo" novalidate>
                 <h2 class="popup__option">Новое место</h2>
                 <fieldset class="popup__info page__fieldset">
-                    <input type="text" class="popup__text popup__text_parameter_figcaption" name="figcaption" placeholder="Название">
-                    <input type="text" class="popup__text popup__text_parameter_photo-link" name="photo-link" placeholder="Ссылка на картинку">
+                    <input id='form-figcaption' type="text" class="popup__text popup__text_parameter_figcaption"
+                    name="figcaption" placeholder="Название" minlength="2" maxlength="30" required>
+                    <span class="popup__error-text form-figcaption-error">*</span>
+                    <input id='form-photo-link' type="url" class="popup__text popup__text_parameter_photo-link" name="photo-link" placeholder="Ссылка на картинку" required>
+                    <span class="popup__error-text form-photo-link-error">*</span>
                     <button type="submit" class="popup__save-button page__hover page__hover_shade_light">Создать</button>
                 </fieldset>
             </form>
@@ -80,6 +85,7 @@
             <button type="button" class="gallery__trash page__hover page__hover_shade_super-dark" aria-label></button>
         </li>
     </template>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/script.js"></script>
 </body>
 </html>
