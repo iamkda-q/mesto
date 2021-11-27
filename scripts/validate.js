@@ -5,11 +5,9 @@ const setEventListener = (
   submitButtonDisableClass,
   inputElementErrorClass,
   errorElementActiveClass,
-  cancelButton
 ) => {
   const inputElements = form.querySelectorAll(inputElement);
   const saveButton = form.querySelector(submitButton);
-  const closeButton = form.closest(".popup").querySelector(cancelButton);
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkValidity(
@@ -18,13 +16,6 @@ const setEventListener = (
         errorElementActiveClass
       );
       toggleSaveButton(form, saveButton, submitButtonDisableClass);
-      closeButton.addEventListener("click", () => {
-        hideInputError(
-          inputElement,
-          inputElementErrorClass,
-          errorElementActiveClass
-        );
-      });
     });
     toggleSaveButton(form, saveButton, submitButtonDisableClass);
   });
@@ -100,7 +91,6 @@ const enableValidation = (config) => {
     submitButtonDisableClass,
     inputElementErrorClass,
     errorElementActiveClass,
-    cancelButton,
   } = config;
 
   const forms = document.querySelectorAll(formElement);
@@ -112,7 +102,6 @@ const enableValidation = (config) => {
       submitButtonDisableClass,
       inputElementErrorClass,
       errorElementActiveClass,
-      cancelButton
     );
   });
 };

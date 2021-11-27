@@ -1,4 +1,10 @@
 .popup__error-text_active {
   opacity: 1;
   visibility: visible;
+  margin-top: 5px;
+  margin-bottom: 13px;
+}
+
+.popup__error-text_active:last-of-type {
+  margin-bottom: 32px;
 }
