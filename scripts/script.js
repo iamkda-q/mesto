@@ -208,3 +208,17 @@ galleryList.addEventListener("click", (evt) => {
 });
 
 enableValidation(validationConfig);
+
+const closePopupByOverlay = (popup) => {
+  const popupContainer = popup.querySelector(".popup__container");
+  popupContainer.addEventListener("click", (evt) => {
+    evt.stopPropagation();
+  });
+  popup.addEventListener("click", () => {
+    closePopup(popup);
+  });
+};
+
+const popups = [popupEditProfile, popupAddPhoto, popupFullPhoto];
+
+popups.forEach(popup => closePopupByOverlay(popup));
