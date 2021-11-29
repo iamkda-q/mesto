@@ -77,8 +77,9 @@ const profileVocation = document.querySelector(".profile__vocation");
 const galleryList = document.querySelector(".gallery__list");
 const galleryItem = document.querySelector("#gallery-item").content; // template элемента галереи
 
-/* Массив всех попапов */
+/* Массив попапов */
 const popups = [popupEditProfile, popupAddPhoto, popupFullPhoto];
+const popupSaveButtonDisableClass = "popup__save-button_disable";
 
 /* Объект для валидации форм */
 const validationConfig = {
@@ -88,7 +89,6 @@ const validationConfig = {
   submitButtonDisableClass: "popup__save-button_disable",
   inputElementErrorClass: "popup__text_error",
   errorElementActiveClass: "popup__error-text_active",
-  cancelButton: ".popup__close-button",
 };
 
 /* Добавление title */
@@ -101,9 +101,49 @@ function addValueForContent(valueTarget, valueSource) {
   valueTarget.value = valueSource.textContent;
 }
 
+const dummyFunc = (popup) => {
+  return function setEscapeCLose(evt) {
+    if (evt.key === "Escape" && popup.classList.contains("popup_opened")) {
+      closeDifPopupType(popup);
+    }
+  }
+};
+
+let escapeDown;
+
 /* открытие/закрытие popup */
-const showPopup = (popup) => popup.classList.add("popup_opened");
-const closePopup = (popup) => popup.classList.remove("popup_opened");
+const showPopup = (popup) => {
+  escapeDown = dummyFunc(popup);
+  document.addEventListener("keydown", escapeDown);
+  popup.classList.add("popup_opened");
+};
+
+const closePopupNotForm = (popup) => {
+  document.removeEventListener("keydown", escapeDown);
+  preventClose = false;
+  popup.classList.remove("popup_opened");
+};
+
+const closePopupForm = (popup, config) => {
+  const { inputElementErrorClass, errorElementActiveClass } = config;
+  const inputElements = popup.querySelectorAll(".popup__text");
+  inputElements.forEach((inputElement) =>
+    hideInputError(
+      inputElement,
+      inputElementErrorClass,
+      errorElementActiveClass
+    )
+  );
+  closePopupNotForm(popup);
+};
+
+const closeDifPopupType = (popup) => {
+  if (popup.querySelector(".popup__text") != null) {
+    closePopupForm(popup, validationConfig);
+  } else {
+    closePopupNotForm(popup);
+  }
+};
 
 function submitPopupEditProfile(evt) {
   evt.preventDefault(); // отменяет стандартную отправку формы.
@@ -111,11 +151,11 @@ function submitPopupEditProfile(evt) {
   profileVocation.textContent = formVocation.value;
   addTitleForContent(profileName);
   addTitleForContent(profileVocation);
-  closePopup(popupEditProfile);
+  closePopupForm(popupEditProfile, validationConfig);
 }
 
-/* Функция добавления фотографии на страницу с открытием попапа FullPhoto */
-function addPhoto(figCaption, photoLink) {
+/* Функция создания фотографии с попапом FullPhoto */
+function generatePhoto(figCaption, photoLink) {
   const galleryElement = galleryItem
     .querySelector(".gallery__element")
     .cloneNode(true);
@@ -123,11 +163,15 @@ function addPhoto(figCaption, photoLink) {
   const galleryFigCaption = galleryElement.querySelector(
     ".gallery__figcaption"
   );
+  const galleryLike = galleryElement.querySelector('.gallery__like');
   const galleryTrash = galleryElement.querySelector(".gallery__trash");
   galleryPhoto.src = photoLink;
   galleryPhoto.alt = figCaption;
   galleryFigCaption.textContent = figCaption;
   addTitleForContent(galleryFigCaption);
+  galleryLike.addEventListener('click', (evt) => {
+    evt.target.classList.toggle('gallery__like_active')
+  })
   galleryTrash.addEventListener("click", () => {
     galleryElement.remove();
   });
@@ -137,18 +181,19 @@ function addPhoto(figCaption, photoLink) {
     popupFullPhotoFigcaption.textContent = galleryFigCaption.textContent;
     showPopup(popupFullPhoto);
   });
-  galleryList.prepend(galleryElement);
+  return galleryElement;
+}
+
+/* Функция добавления фотографии в галерею */
+function addPhoto(figCaption, photoLink) {
+  galleryList.prepend(generatePhoto(figCaption, photoLink));
 }
 
 function submitPopupAddPhoto(evt) {
   evt.preventDefault(); // отменяет стандартную отправку формы.
   addPhoto(formFigcaption.value, formPhotoLink.value);
-  closePopup(popupAddPhoto);
+  closePopupForm(popupAddPhoto, validationConfig);
 }
-
-/* Добавление value в попап, чтобы при первой загрузке кнопка "Сохранить" была активна */
-addValueForContent(formName, profileName);
-addValueForContent(formVocation, profileVocation);
 
 /* Добавление шести фотографий из массива */
 initialCards.forEach((item) => {
@@ -157,20 +202,18 @@ initialCards.forEach((item) => {
 
 /* Открытие/закрытие PopupEditProfile */
 editProfileButton.addEventListener("click", () => {
-  showPopup(popupEditProfile);
   addValueForContent(formName, profileName);
   addValueForContent(formVocation, profileVocation);
-  popupEditProfileSaveButton.classList.remove("popup__save-button_disable");
-  popupEditProfileSaveButton.disabled = false;
+  activateButton(popupEditProfileSaveButton, popupSaveButtonDisableClass);
+  showPopup(popupEditProfile);
 });
 
 /* Открытие/закрытие popupAddPhoto */
 addPhotoButton.addEventListener("click", () => {
-  showPopup(popupAddPhoto);
   formFigcaption.value = "";
   formPhotoLink.value = "";
-  popupAddPhotoSaveButton.classList.add("popup__save-button_disable");
-  popupAddPhotoSaveButton.disabled = true;
+  deactivateButton(popupAddPhotoSaveButton, popupSaveButtonDisableClass);
+  showPopup(popupAddPhoto);
 });
 
 /* Сохранение данных о пользователе*/
@@ -181,56 +224,37 @@ popupAddPhotoForm.addEventListener("submit", (evt) => {
   submitPopupAddPhoto(evt);
 });
 
-/* Проставление лайков не по событию каждого лайка, а по всплытию события на галерее-родителе */
-galleryList.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("gallery__like")) {
-    evt.target.classList.toggle("gallery__like_active");
-  }
-});
+/* Нажатие на кнопку мыши внутри input с дальнейшим перемещением курсора на оверлэй теперь не закрывает попап (фича1) */
+let preventClose = false; // флаг для фича1
 
-const closePopupByDifWays = (popup, config) => {
-  const { inputElementErrorClass, errorElementActiveClass } = config;
-  const inputElements = popup.querySelectorAll(".popup__text");
+const onMouseDown = (evt) => {
+  preventClose = !!evt.target.closest(".popup__container");
+  console.log(preventClose);
+}; // отслеживаем, что п-ль нажал на кнопку мыши внутри контента, а не на оверлэе
+
+const onMouseUp = () => {
+  preventClose = !preventClose;
+}; // сбрасываем флаг, если п-ль отпустил кнопку мыши внутри контента
+
+const setPopupCloseListeners = (popup) => {
   const popupCloseButton = popup.querySelector(".popup__close-button");
-
   popupCloseButton.addEventListener("click", () => {
-    closePopup(popup);
-    inputElements.forEach((inputElement) =>
-      hideInputError(
-        inputElement,
-        inputElementErrorClass,
-        errorElementActiveClass
-      )
-    );
+    closeDifPopupType(popup);
   });
 
   const popupContainer = popup.querySelector(".popup__container");
+  popupContainer.addEventListener("mousedown", onMouseDown);
+  popupContainer.addEventListener("mouseup", onMouseUp);
 
   popupContainer.addEventListener("click", (evt) => {
     evt.stopPropagation();
   });
   popup.addEventListener("click", () => {
-    closePopup(popup);
-    inputElements.forEach((inputElement) =>
-    hideInputError(
-      inputElement,
-      inputElementErrorClass,
-      errorElementActiveClass
-    )
-  );
-  });
-
-  document.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape" && popup.classList.contains("popup_opened")) {
-      closePopup(popup);
-      inputElements.forEach((inputElement) =>
-      hideInputError(
-        inputElement,
-        inputElementErrorClass,
-        errorElementActiveClass
-      )
-    );
+    if (preventClose) {
+      preventClose = !preventClose;
+      return;
     }
+    closeDifPopupType(popup);
   });
 };
 
@@ -238,4 +262,4 @@ const closePopupByDifWays = (popup, config) => {
 enableValidation(validationConfig);
 
 /* Реализация всех способов закрытия попапов */
-popups.forEach((popup) => closePopupByDifWays(popup, validationConfig));
+popups.forEach((popup) => setPopupCloseListeners(popup));
