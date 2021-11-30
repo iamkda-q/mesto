@@ -79,7 +79,6 @@ const galleryItem = document.querySelector("#gallery-item").content; // template
 
 /* Массив попапов */
 const popups = [popupEditProfile, popupAddPhoto, popupFullPhoto];
-const popupSaveButtonDisableClass = "popup__save-button_disable";
 
 /* Объект для валидации форм */
 const validationConfig = {
@@ -101,7 +100,7 @@ function addValueForContent(valueTarget, valueSource) {
   valueTarget.value = valueSource.textContent;
 }
 
-const dummyFunc = (popup) => {
+const returnSetEscapeCLose = (popup) => {
   return function setEscapeCLose(evt) {
     if (evt.key === "Escape" && popup.classList.contains("popup_opened")) {
       closeDifPopupType(popup);
@@ -113,14 +112,13 @@ let escapeDown;
 
 /* открытие/закрытие popup */
 const showPopup = (popup) => {
-  escapeDown = dummyFunc(popup);
+  escapeDown = returnSetEscapeCLose(popup);
   document.addEventListener("keydown", escapeDown);
   popup.classList.add("popup_opened");
 };
 
 const closePopupNotForm = (popup) => {
   document.removeEventListener("keydown", escapeDown);
-  preventClose = false;
   popup.classList.remove("popup_opened");
 };
 
@@ -204,7 +202,7 @@ initialCards.forEach((item) => {
 editProfileButton.addEventListener("click", () => {
   addValueForContent(formName, profileName);
   addValueForContent(formVocation, profileVocation);
-  activateButton(popupEditProfileSaveButton, popupSaveButtonDisableClass);
+  activateButton(popupEditProfileSaveButton, validationConfig["submitButtonDisableClass"]);
   showPopup(popupEditProfile);
 });
 
@@ -212,7 +210,7 @@ editProfileButton.addEventListener("click", () => {
 addPhotoButton.addEventListener("click", () => {
   formFigcaption.value = "";
   formPhotoLink.value = "";
-  deactivateButton(popupAddPhotoSaveButton, popupSaveButtonDisableClass);
+  deactivateButton(popupAddPhotoSaveButton, validationConfig["submitButtonDisableClass"]);
   showPopup(popupAddPhoto);
 });
 
@@ -224,18 +222,6 @@ popupAddPhotoForm.addEventListener("submit", (evt) => {
   submitPopupAddPhoto(evt);
 });
 
-/* Нажатие на кнопку мыши внутри input с дальнейшим перемещением курсора на оверлэй теперь не закрывает попап (фича1) */
-let preventClose = false; // флаг для фича1
-
-const onMouseDown = (evt) => {
-  preventClose = !!evt.target.closest(".popup__container");
-  console.log(preventClose);
-}; // отслеживаем, что п-ль нажал на кнопку мыши внутри контента, а не на оверлэе
-
-const onMouseUp = () => {
-  preventClose = !preventClose;
-}; // сбрасываем флаг, если п-ль отпустил кнопку мыши внутри контента
-
 const setPopupCloseListeners = (popup) => {
   const popupCloseButton = popup.querySelector(".popup__close-button");
   popupCloseButton.addEventListener("click", () => {
@@ -243,17 +229,11 @@ const setPopupCloseListeners = (popup) => {
   });
 
   const popupContainer = popup.querySelector(".popup__container");
-  popupContainer.addEventListener("mousedown", onMouseDown);
-  popupContainer.addEventListener("mouseup", onMouseUp);
 
-  popupContainer.addEventListener("click", (evt) => {
+  popupContainer.addEventListener("mousedown", (evt) => {
     evt.stopPropagation();
   });
-  popup.addEventListener("click", () => {
-    if (preventClose) {
-      preventClose = !preventClose;
-      return;
-    }
+  popup.addEventListener("mousedown", () => {
     closeDifPopupType(popup);
   });
 };
