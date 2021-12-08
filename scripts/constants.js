@@ -30,9 +30,7 @@ const editProfileButton = document.querySelector(
   ".profile__edit-profile-button"
 );
 const popupEditProfile = document.querySelector(".popup_edit-profile");
-const popupEditProfileCloseButton = popupEditProfile.querySelector(
-  ".popup__close-button"
-);
+
 const formName = popupEditProfile.querySelector(".popup__text_parameter_name");
 const formVocation = popupEditProfile.querySelector(
   ".popup__text_parameter_vocation"
@@ -57,6 +55,12 @@ const popupAddPhotoSaveButton = popupAddPhoto.querySelector(
   ".popup__save-button"
 );
 
+/* Попап открытия фотографий */
+const popupFullPhoto = document.querySelector(".popup_full-photo");
+const popupFullPhotoPhoto = popupFullPhoto.querySelector(".popup__photo");
+const popupFullPhotoFigcaption =
+  popupFullPhoto.querySelector(".popup__figcaption");
+
 const profileName = document.querySelector(".profile__name");
 const profileVocation = document.querySelector(".profile__vocation");
 
@@ -73,8 +77,8 @@ const validationConfig = {
   cancelButton: ".popup__close-button",
 };
 
-export {initialCards, editProfileButton, popupEditProfile, popupEditProfileCloseButton,
+export {initialCards, editProfileButton, popupEditProfile,
   formName, formVocation, popupEditProfileForm, popupEditProfileSaveButton,
   addPhotoButton, popupAddPhoto, formFigcaption, formPhotoLink, popupAddPhotoForm,
-  popupAddPhotoSaveButton, profileName, profileVocation, galleryList,
-  validationConfig};
+  popupAddPhotoSaveButton, popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption,
+  profileName, profileVocation, galleryList, validationConfig};
