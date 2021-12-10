@@ -1,7 +1,5 @@
 import { popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption } from "./constants.js";
 
-import { showPopup } from "./popups.js";
-
 export class Card {
   constructor(data, cardClass) {
     this._figCaption = data.name;
@@ -34,8 +32,12 @@ export class Card {
 
     this._galleryPhoto.addEventListener("click", () => {
       this._handleOpenPopup();
-      showPopup(popupFullPhoto);
+      this._showPopup(popupFullPhoto);
     });
+  }
+
+  setShowPhotoAction(showPopup) {
+    this._showPopup = showPopup;
   }
 
   generateCard() {
