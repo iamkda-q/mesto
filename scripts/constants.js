@@ -36,10 +36,7 @@ const formVocation = popupEditProfile.querySelector(
   ".popup__text_parameter_vocation"
 );
 const popupEditProfileForm =
-  popupEditProfile.querySelector(".popup__container");
-const popupEditProfileSaveButton = popupEditProfile.querySelector(
-  ".popup__save-button"
-);
+  popupEditProfile.querySelector(".popup__form");
 
 /* Попап добавления фотографии в галерею */
 const addPhotoButton = document.querySelector(".profile__edit-gallery-button");
@@ -50,10 +47,7 @@ const formFigcaption = popupAddPhoto.querySelector(
 const formPhotoLink = popupAddPhoto.querySelector(
   ".popup__text_parameter_photo-link"
 );
-const popupAddPhotoForm = popupAddPhoto.querySelector(".popup__container");
-const popupAddPhotoSaveButton = popupAddPhoto.querySelector(
-  ".popup__save-button"
-);
+const popupAddPhotoForm = popupAddPhoto.querySelector(".popup__form");
 
 /* Попап открытия фотографий */
 const popupFullPhoto = document.querySelector(".popup_full-photo");
@@ -68,7 +62,6 @@ const galleryList = document.querySelector(".gallery__list");
 
 /* Объект для валидации форм */
 const validationConfig = {
-  formElement: ".popup__form",
   inputElement: ".popup__text",
   submitButton: ".popup__save-button",
   submitButtonDisableClass: "popup__save-button_disable",
@@ -78,7 +71,7 @@ const validationConfig = {
 };
 
 export {initialCards, editProfileButton, popupEditProfile,
-  formName, formVocation, popupEditProfileForm, popupEditProfileSaveButton,
-  addPhotoButton, popupAddPhoto, formFigcaption, formPhotoLink, popupAddPhotoForm,
-  popupAddPhotoSaveButton, popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption,
+  formName, formVocation, popupEditProfileForm, addPhotoButton,
+  popupAddPhoto, formFigcaption, formPhotoLink, popupAddPhotoForm,
+  popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption,
   profileName, profileVocation, galleryList, validationConfig};
