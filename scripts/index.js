@@ -3,7 +3,7 @@
 import {initialCards, editProfileButton, popupEditProfile,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
   popupAddPhoto, formFigcaption, formPhotoLink, popupAddPhotoForm,
-  popupFullPhoto, profileName, profileVocation, galleryList, validationConfig} from "./constants.js";
+  profileName, profileVocation, galleryList, validationConfig, popups} from "./constants.js";
 
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
@@ -14,57 +14,39 @@ popupEditProfileFormValidator.enableValidation();
 const popupAddPhotoFormValidator = new FormValidator(validationConfig, popupAddPhotoForm);
 popupAddPhotoFormValidator.enableValidation();
 
-/* Массив попапов и их валидаторов*/
-const popups = [[popupEditProfile, popupEditProfileFormValidator], [popupAddPhoto, popupAddPhotoFormValidator], [popupFullPhoto]];
+let escapeDown;
 
-const returnSetEscapeCLose = (popup, validator) => {
-  return function setEscapeCLose(evt) {
-    if (evt.key === "Escape" && popup.classList.contains("popup_opened")) {
-      closeDifPopupType(popup, validator);
-    }
+const returnClosePopup = (popup) => {
+  return (evt) => {
+    if (evt.key === "Escape") closePopup(popup);
   }
 };
 
-let escapeDown;
-
 /* открытие popup */
-const showPopup = (popup, validator) => {
-  escapeDown = returnSetEscapeCLose(popup, validator);
+const showPopup = (popup) => {
+  escapeDown = returnClosePopup(popup);
   document.addEventListener("keydown", escapeDown);
   popup.classList.add("popup_opened");
 };
 
-const closePopupNotForm = (popup) => {
+/* закрытие popup */
+const closePopup = (popup) => {
   document.removeEventListener("keydown", escapeDown);
   popup.classList.remove("popup_opened");
 };
 
-const closePopupForm = (popup, validator) => {
-  validator.inputElements.forEach((inputElement) => validator.hideInputError(inputElement));
-  closePopupNotForm(popup);
-};
-
-const closeDifPopupType = (popup, validator) => {
-  if (popup.querySelector(".popup__text") != null) {
-    closePopupForm(popup, validator);
-  } else {
-    closePopupNotForm(popup);
-  }
-};
-
-const setPopupCloseListeners = (popup, validator) => {
+const setPopupCloseListeners = (popup) => {
   const popupCloseButton = popup.querySelector(".popup__close-button");
   popupCloseButton.addEventListener("click", () => {
-    closeDifPopupType(popup, validator);
+    closePopup(popup);
   });
 
   const popupContainer = popup.querySelector(".popup__container");
-
   popupContainer.addEventListener("mousedown", (evt) => {
     evt.stopPropagation();
   });
   popup.addEventListener("mousedown", () => {
-    closeDifPopupType(popup, validator);
+    closePopup(popup);
   });
 };
 
@@ -73,12 +55,15 @@ function addValueForContent(valueTarget, valueSource) {
   valueTarget.value = valueSource.textContent;
 }
 
+/* Функция создания фотографии для галереи */
+function generatePhoto(item) {
+  const card = new Card(item, "#gallery-item", showPopup);
+  return card.generateCard();
+}
+
 /* Функция добавления фотографии в галерею */
 function addPhoto(item) {
-  const card = new Card(item, "#gallery-item");
-  const cardElement = card.generateCard();
-  card.setShowPhotoAction(showPopup);
-  galleryList.prepend(cardElement);
+  galleryList.prepend(generatePhoto(item));
 }
 
 /* Добавление шести фотографий из массива */
@@ -91,7 +76,8 @@ editProfileButton.addEventListener("click", () => {
   addValueForContent(formName, profileName);
   addValueForContent(formVocation, profileVocation);
   popupEditProfileFormValidator.activateButton();
-  showPopup(popupEditProfile, popupEditProfileFormValidator);
+  popupEditProfileFormValidator.inputElements.forEach((inputElement) => popupEditProfileFormValidator.hideInputError(inputElement));
+  showPopup(popupEditProfile);
 });
 
 /* Открытие/закрытие popupAddPhoto */
@@ -99,7 +85,8 @@ addPhotoButton.addEventListener("click", () => {
   formFigcaption.value = "";
   formPhotoLink.value = "";
   popupAddPhotoFormValidator.deactivateButton();
-  showPopup(popupAddPhoto, popupAddPhotoFormValidator);
+  popupAddPhotoFormValidator.inputElements.forEach((inputElement) => popupAddPhotoFormValidator.hideInputError(inputElement));
+  showPopup(popupAddPhoto);
 });
 
 function submitPopupEditProfile(evt) {
@@ -108,13 +95,13 @@ function submitPopupEditProfile(evt) {
   profileVocation.textContent = formVocation.value;
   profileName.title = profileName.textContent;
   profileVocation.title = profileVocation.textContent;
-  closePopupForm(popupEditProfile, popupEditProfileFormValidator);
+  closePopup(popupEditProfile);
 }
 
 function submitPopupAddPhoto(evt) {
   evt.preventDefault(); // отменяет стандартную отправку формы.
   addPhoto({name: formFigcaption.value, link: formPhotoLink.value});
-  closePopupForm(popupAddPhoto, popupAddPhotoFormValidator);
+  closePopup(popupAddPhoto);
 }
 
 /* Сохранение данных о пользователе*/
@@ -125,5 +112,5 @@ popupAddPhotoForm.addEventListener("submit", (evt) => {
   submitPopupAddPhoto(evt);
 });
 
-/* Реализация всех способов закрытия попапов */
-popups.forEach((item) => setPopupCloseListeners(...item));
+/* Реализация всех способов закрытия попапов с формами*/
+popups.forEach((item) => setPopupCloseListeners(item));
