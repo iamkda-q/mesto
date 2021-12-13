@@ -1,16 +1,16 @@
 import { popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption } from "./constants.js";
 
 export class Card {
-  constructor(data, cardClass, showPopup) {
+  constructor(data, cardSelector, showPopup) {
     this._figCaption = data.name;
     this._photoLink = data.link;
-    this._cardClass = cardClass;
+    this._cardSelector = cardSelector;
     this._showPopup = showPopup;
   }
 
   _getTemplateCard() {
     const galleryElement = document
-      .querySelector(this._cardClass)
+      .querySelector(this._cardSelector)
       .content.querySelector(".gallery__element")
       .cloneNode(true);
     return galleryElement;

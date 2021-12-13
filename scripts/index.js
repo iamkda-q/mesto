@@ -76,7 +76,7 @@ editProfileButton.addEventListener("click", () => {
   addValueForContent(formName, profileName);
   addValueForContent(formVocation, profileVocation);
   popupEditProfileFormValidator.activateButton();
-  popupEditProfileFormValidator.inputElements.forEach((inputElement) => popupEditProfileFormValidator.hideInputError(inputElement));
+  popupEditProfileFormValidator.resetError();
   showPopup(popupEditProfile);
 });
 
@@ -85,7 +85,7 @@ addPhotoButton.addEventListener("click", () => {
   formFigcaption.value = "";
   formPhotoLink.value = "";
   popupAddPhotoFormValidator.deactivateButton();
-  popupAddPhotoFormValidator.inputElements.forEach((inputElement) => popupAddPhotoFormValidator.hideInputError(inputElement));
+  popupAddPhotoFormValidator.resetError();
   showPopup(popupAddPhoto);
 });
 
