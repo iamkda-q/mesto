@@ -7,6 +7,7 @@ import {initialCards, editProfileButton, popupEditProfile,
 
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import Section from "./Section.js";
 
 const popupEditProfileFormValidator = new FormValidator(validationConfig, popupEditProfileForm);
 popupEditProfileFormValidator.enableValidation();
@@ -55,21 +56,15 @@ function addValueForContent(valueTarget, valueSource) {
   valueTarget.value = valueSource.textContent;
 }
 
-/* Функция создания фотографии для галереи */
-function generatePhoto(item) {
-  const card = new Card(item, "#gallery-item", showPopup);
-  return card.generateCard();
-}
-
-/* Функция добавления фотографии в галерею */
-function addPhoto(item) {
-  galleryList.prepend(generatePhoto(item));
-}
+// Создание "слоя" класса для отрисовки элементов в выбранном контейнере
+const Cards = new Section({items : initialCards, renderer : (item) => {
+  const cardTemplate = new Card(item, "#gallery-item", showPopup);
+  const card = cardTemplate.generateCard();
+  Cards.addItem(card);
+}}, galleryList);
 
 /* Добавление шести фотографий из массива */
-initialCards.forEach((item) => {
-  addPhoto(item);
-});
+Cards.renderItems();
 
 /* Открытие/закрытие PopupEditProfile */
 editProfileButton.addEventListener("click", () => {

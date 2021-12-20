@@ -58,7 +58,7 @@ const popupFullPhotoFigcaption =
 const profileName = document.querySelector(".profile__name");
 const profileVocation = document.querySelector(".profile__vocation");
 
-const galleryList = document.querySelector(".gallery__list");
+const galleryList = ".gallery__list";
 
 /* Объект для валидации форм */
 const validationConfig = {
