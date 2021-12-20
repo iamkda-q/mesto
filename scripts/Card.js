@@ -1,30 +1,32 @@
 import { popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption } from "./constants.js";
 
 export class Card {
-  constructor(data, cardClass) {
+  constructor(data, cardSelector, showPopup) {
     this._figCaption = data.name;
     this._photoLink = data.link;
-    this._cardClass = cardClass;
+    this._cardSelector = cardSelector;
+    this._showPopup = showPopup;
   }
 
   _getTemplateCard() {
     const galleryElement = document
-      .querySelector(this._cardClass)
+      .querySelector(this._cardSelector)
       .content.querySelector(".gallery__element")
       .cloneNode(true);
     return galleryElement;
   }
 
   _handleOpenPopup() {
-    popupFullPhotoPhoto.src = this._galleryPhoto.src;
-    popupFullPhotoPhoto.alt = this._galleryFigCaption.textContent;
-    popupFullPhotoFigcaption.textContent = this._galleryFigCaption.textContent;
+    popupFullPhotoPhoto.src = this._photoLink;
+    popupFullPhotoPhoto.alt = this._figCaption;
+    popupFullPhotoFigcaption.textContent = this._figCaption;
   }
 
    _setEventListeners() {
-    this._galleryTrash.addEventListener("click", () =>
-      this._galleryElement.remove()
-    );
+    this._galleryTrash.addEventListener("click", () => {
+      this._galleryElement.remove();
+      this._galleryElement = null;
+    });
 
     this._galleryLike.addEventListener("click", (evt) =>
       evt.target.classList.toggle("gallery__like_active")
@@ -34,10 +36,6 @@ export class Card {
       this._handleOpenPopup();
       this._showPopup(popupFullPhoto);
     });
-  }
-
-  setShowPhotoAction(showPopup) {
-    this._showPopup = showPopup;
   }
 
   generateCard() {

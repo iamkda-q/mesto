@@ -58,7 +58,7 @@ const popupFullPhotoFigcaption =
 const profileName = document.querySelector(".profile__name");
 const profileVocation = document.querySelector(".profile__vocation");
 
-const galleryList = document.querySelector(".gallery__list");
+const galleryList = ".gallery__list";
 
 /* Объект для валидации форм */
 const validationConfig = {
@@ -70,8 +70,11 @@ const validationConfig = {
   cancelButton: ".popup__close-button",
 };
 
+/* Массив попапов и их валидаторов*/
+const popups = [popupEditProfile, popupAddPhoto, popupFullPhoto];
+
 export {initialCards, editProfileButton, popupEditProfile,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
   popupAddPhoto, formFigcaption, formPhotoLink, popupAddPhotoForm,
   popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption,
-  profileName, profileVocation, galleryList, validationConfig};
+  profileName, profileVocation, galleryList, validationConfig, popups};
