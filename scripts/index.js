@@ -10,6 +10,7 @@ import { FormValidator } from "./FormValidator.js";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
 
 const popupEditProfileFormValidator = new FormValidator(validationConfig, popupEditProfileForm);
 popupEditProfileFormValidator.enableValidation();
@@ -59,9 +60,25 @@ function addValueForContent(valueTarget, valueSource) {
 }
 
 
-const popupEditProfile = new Popup(popupEditProfileSelector);
+const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (evt) => {
+    evt.preventDefault(); // отменяет стандартную отправку формы.
+    profileName.textContent = formName.value;
+    profileVocation.textContent = formVocation.value;
+    profileName.title = profileName.textContent;
+    profileVocation.title = profileVocation.textContent;
+    popupEditProfile.close();
+});
 popupEditProfile.setEventListeners();
-const popupAddPhoto = new Popup(popupAddPhotoSelector);
+const popupAddPhoto = new PopupWithForm(popupAddPhotoSelector, (evt) => {
+    evt.preventDefault(); // отменяет стандартную отправку формы.
+    const newCard = new Section({items : [{name: formFigcaption.value, link: formPhotoLink.value}], renderer : (item) => {
+      const cardTemplate = new Card(item, "#gallery-item", popupFullPhotoXXL.open.bind(popupFullPhotoXXL));
+      const card = cardTemplate.generateCard();
+      newCard.addItem(card);
+    }}, galleryList);
+    newCard.renderItems();
+    popupAddPhoto.close();
+});
 popupAddPhoto.setEventListeners();
 const popupFullPhotoXXL = new PopupWithImage(popupFullPhotoSelector);
 popupFullPhotoXXL.setEventListeners();
@@ -88,41 +105,41 @@ editProfileButton.addEventListener("click", () => {
 
 /* Открытие/закрытие popupAddPhoto */
 addPhotoButton.addEventListener("click", () => {
-  formFigcaption.value = "";
-  formPhotoLink.value = "";
+  // formFigcaption.value = "";
+  // formPhotoLink.value = "";
   popupAddPhotoFormValidator.deactivateButton();
   popupAddPhotoFormValidator.resetError();
   // showPopup(popupAddPhoto);
   popupAddPhoto.open();
 });
 
-function submitPopupEditProfile(evt) {
-  evt.preventDefault(); // отменяет стандартную отправку формы.
-  profileName.textContent = formName.value;
-  profileVocation.textContent = formVocation.value;
-  profileName.title = profileName.textContent;
-  profileVocation.title = profileVocation.textContent;
-  popupEditProfile.close();
-}
+// function submitPopupEditProfile(evt) {
+//   evt.preventDefault(); // отменяет стандартную отправку формы.
+//   profileName.textContent = formName.value;
+//   profileVocation.textContent = formVocation.value;
+//   profileName.title = profileName.textContent;
+//   profileVocation.title = profileVocation.textContent;
+//   popupEditProfile.close();
+// }
 
-function submitPopupAddPhoto(evt) {
-  evt.preventDefault(); // отменяет стандартную отправку формы.
-  const newCard = new Section({items : [{name: formFigcaption.value, link: formPhotoLink.value}], renderer : (item) => {
-    const cardTemplate = new Card(item, "#gallery-item", popupFullPhotoXXL.open);
-    const card = cardTemplate.generateCard();
-    newCard.addItem(card);
-  }}, galleryList);
-  newCard.renderItems();
-  popupAddPhoto.close();
-}
+// function submitPopupAddPhoto(evt) {
+//   evt.preventDefault(); // отменяет стандартную отправку формы.
+//   const newCard = new Section({items : [{name: formFigcaption.value, link: formPhotoLink.value}], renderer : (item) => {
+//     const cardTemplate = new Card(item, "#gallery-item", popupFullPhotoXXL.open.bind(popupFullPhotoXXL));
+//     const card = cardTemplate.generateCard();
+//     newCard.addItem(card);
+//   }}, galleryList);
+//   newCard.renderItems();
+//   popupAddPhoto.close();
+// }
 
 /* Сохранение данных о пользователе*/
-popupEditProfileForm.addEventListener("submit", submitPopupEditProfile);
+// popupEditProfileForm.addEventListener("submit", submitPopupEditProfile);
 
 /* Добавление фотографии в галерею*/
-popupAddPhotoForm.addEventListener("submit", (evt) => {
-  submitPopupAddPhoto(evt);
-});
+// popupAddPhotoForm.addEventListener("submit", (evt) => {
+//   submitPopupAddPhoto(evt);
+// });
 
 /* Реализация всех способов закрытия попапов с формами*/
 
