@@ -1,13 +1,14 @@
 "use strict";
 
-import {initialCards, editProfileButton, popupEditProfile,
+import {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
-  popupAddPhoto, formFigcaption, formPhotoLink, popupAddPhotoForm,
+  popupAddPhotoSelector, formFigcaption, formPhotoLink, popupAddPhotoForm,
   profileName, profileVocation, galleryList, validationConfig, popups} from "./constants.js";
 
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import Section from "./Section.js";
+import Popup from "./Popup.js";
 
 const popupEditProfileFormValidator = new FormValidator(validationConfig, popupEditProfileForm);
 popupEditProfileFormValidator.enableValidation();
@@ -72,7 +73,8 @@ editProfileButton.addEventListener("click", () => {
   addValueForContent(formVocation, profileVocation);
   popupEditProfileFormValidator.activateButton();
   popupEditProfileFormValidator.resetError();
-  showPopup(popupEditProfile);
+  // showPopup(popupEditProfile);
+  popupEditProfile.open();
 });
 
 /* Открытие/закрытие popupAddPhoto */
@@ -81,7 +83,8 @@ addPhotoButton.addEventListener("click", () => {
   formPhotoLink.value = "";
   popupAddPhotoFormValidator.deactivateButton();
   popupAddPhotoFormValidator.resetError();
-  showPopup(popupAddPhoto);
+  // showPopup(popupAddPhoto);
+  popupAddPhoto.open();
 });
 
 function submitPopupEditProfile(evt) {
@@ -90,13 +93,18 @@ function submitPopupEditProfile(evt) {
   profileVocation.textContent = formVocation.value;
   profileName.title = profileName.textContent;
   profileVocation.title = profileVocation.textContent;
-  closePopup(popupEditProfile);
+  popupEditProfile.close();
 }
 
 function submitPopupAddPhoto(evt) {
   evt.preventDefault(); // отменяет стандартную отправку формы.
-  addPhoto({name: formFigcaption.value, link: formPhotoLink.value});
-  closePopup(popupAddPhoto);
+  const newCard = new Section({items : [{name: formFigcaption.value, link: formPhotoLink.value}], renderer : (item) => {
+    const cardTemplate = new Card(item, "#gallery-item", showPopup);
+    const card = cardTemplate.generateCard();
+    newCard.addItem(card);
+  }}, galleryList);
+  newCard.renderItems();
+  popupAddPhoto.close();
 }
 
 /* Сохранение данных о пользователе*/
@@ -108,4 +116,11 @@ popupAddPhotoForm.addEventListener("submit", (evt) => {
 });
 
 /* Реализация всех способов закрытия попапов с формами*/
-popups.forEach((item) => setPopupCloseListeners(item));
+
+
+/* popups.forEach((item) => setPopupCloseListeners(item)); */
+
+const popupEditProfile = new Popup(popupEditProfileSelector);
+popupEditProfile.setEventListeners();
+const popupAddPhoto = new Popup(popupAddPhotoSelector);
+popupAddPhoto.setEventListeners();
