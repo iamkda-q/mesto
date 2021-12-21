@@ -53,10 +53,10 @@ const formPhotoLink = popupAP.querySelector(
 const popupAddPhotoForm = popupAP.querySelector(".popup__form");
 
 /* Попап открытия фотографий */
-const popupFullPhoto = document.querySelector(".popup_full-photo");
-const popupFullPhotoPhoto = popupFullPhoto.querySelector(".popup__photo");
-const popupFullPhotoFigcaption =
-  popupFullPhoto.querySelector(".popup__figcaption");
+const popupFullPhotoSelector = /* document.querySelector( */".popup_full-photo"/* ) */;
+// const popupFullPhotoPhoto = popupFullPhoto.querySelector(".popup__photo");
+// const popupFullPhotoFigcaption =
+//   popupFullPhoto.querySelector(".popup__figcaption");
 
 const profileName = document.querySelector(".profile__name");
 const profileVocation = document.querySelector(".profile__vocation");
@@ -74,10 +74,9 @@ const validationConfig = {
 };
 
 /* Массив попапов и их валидаторов*/
-const popups = [popupFullPhoto];
+// const popups = [popupFullPhoto];
 
 export {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
   popupAddPhotoSelector, formFigcaption, formPhotoLink, popupAddPhotoForm,
-  popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption,
-  profileName, profileVocation, galleryList, validationConfig, popups};
+  popupFullPhotoSelector, profileName, profileVocation, galleryList, validationConfig};

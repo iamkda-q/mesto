@@ -3,12 +3,13 @@
 import {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
   popupAddPhotoSelector, formFigcaption, formPhotoLink, popupAddPhotoForm,
-  profileName, profileVocation, galleryList, validationConfig, popups} from "./constants.js";
+  profileName, profileVocation, popupFullPhotoSelector, galleryList, validationConfig} from "./constants.js";
 
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 const popupEditProfileFormValidator = new FormValidator(validationConfig, popupEditProfileForm);
 popupEditProfileFormValidator.enableValidation();
@@ -16,50 +17,58 @@ popupEditProfileFormValidator.enableValidation();
 const popupAddPhotoFormValidator = new FormValidator(validationConfig, popupAddPhotoForm);
 popupAddPhotoFormValidator.enableValidation();
 
-let escapeDown;
+// let escapeDown;
 
-const returnClosePopup = (popup) => {
-  return (evt) => {
-    if (evt.key === "Escape") closePopup(popup);
-  }
-};
+// const returnClosePopup = (popup) => {
+//   return (evt) => {
+//     if (evt.key === "Escape") closePopup(popup);
+//   }
+// };
 
-/* открытие popup */
-const showPopup = (popup) => {
-  escapeDown = returnClosePopup(popup);
-  document.addEventListener("keydown", escapeDown);
-  popup.classList.add("popup_opened");
-};
+// /* открытие popup */
+// const showPopup = (popup) => {
+//   escapeDown = returnClosePopup(popup);
+//   document.addEventListener("keydown", escapeDown);
+//   popup.classList.add("popup_opened");
+// };
 
-/* закрытие popup */
-const closePopup = (popup) => {
-  document.removeEventListener("keydown", escapeDown);
-  popup.classList.remove("popup_opened");
-};
+// /* закрытие popup */
+// const closePopup = (popup) => {
+//   document.removeEventListener("keydown", escapeDown);
+//   popup.classList.remove("popup_opened");
+// };
 
-const setPopupCloseListeners = (popup) => {
-  const popupCloseButton = popup.querySelector(".popup__close-button");
-  popupCloseButton.addEventListener("click", () => {
-    closePopup(popup);
-  });
+// const setPopupCloseListeners = (popup) => {
+//   const popupCloseButton = popup.querySelector(".popup__close-button");
+//   popupCloseButton.addEventListener("click", () => {
+//     closePopup(popup);
+//   });
 
-  const popupContainer = popup.querySelector(".popup__container");
-  popupContainer.addEventListener("mousedown", (evt) => {
-    evt.stopPropagation();
-  });
-  popup.addEventListener("mousedown", () => {
-    closePopup(popup);
-  });
-};
+//   const popupContainer = popup.querySelector(".popup__container");
+//   popupContainer.addEventListener("mousedown", (evt) => {
+//     evt.stopPropagation();
+//   });
+//   popup.addEventListener("mousedown", () => {
+//     closePopup(popup);
+//   });
+// };
 
 /* Добавление value */
 function addValueForContent(valueTarget, valueSource) {
   valueTarget.value = valueSource.textContent;
 }
 
-// Создание "слоя" класса для отрисовки элементов в выбранном контейнере
+
+const popupEditProfile = new Popup(popupEditProfileSelector);
+popupEditProfile.setEventListeners();
+const popupAddPhoto = new Popup(popupAddPhotoSelector);
+popupAddPhoto.setEventListeners();
+const popupFullPhotoXXL = new PopupWithImage(popupFullPhotoSelector);
+popupFullPhotoXXL.setEventListeners();
+
+// Создание "слоя" класса для отрисовки элементов в выбранном контейнереs
 const Cards = new Section({items : initialCards, renderer : (item) => {
-  const cardTemplate = new Card(item, "#gallery-item", showPopup);
+  const cardTemplate = new Card(item, "#gallery-item", popupFullPhotoXXL.open.bind(popupFullPhotoXXL));
   const card = cardTemplate.generateCard();
   Cards.addItem(card);
 }}, galleryList);
@@ -99,7 +108,7 @@ function submitPopupEditProfile(evt) {
 function submitPopupAddPhoto(evt) {
   evt.preventDefault(); // отменяет стандартную отправку формы.
   const newCard = new Section({items : [{name: formFigcaption.value, link: formPhotoLink.value}], renderer : (item) => {
-    const cardTemplate = new Card(item, "#gallery-item", showPopup);
+    const cardTemplate = new Card(item, "#gallery-item", popupFullPhotoXXL.open);
     const card = cardTemplate.generateCard();
     newCard.addItem(card);
   }}, galleryList);
@@ -120,7 +129,4 @@ popupAddPhotoForm.addEventListener("submit", (evt) => {
 
 /* popups.forEach((item) => setPopupCloseListeners(item)); */
 
-const popupEditProfile = new Popup(popupEditProfileSelector);
-popupEditProfile.setEventListeners();
-const popupAddPhoto = new Popup(popupAddPhotoSelector);
-popupAddPhoto.setEventListeners();
+
