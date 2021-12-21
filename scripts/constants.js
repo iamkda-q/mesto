@@ -29,25 +29,28 @@ const initialCards = [
 const editProfileButton = document.querySelector(
   ".profile__edit-profile-button"
 );
-const popupEditProfile = document.querySelector(".popup_edit-profile");
+const popupEditProfileSelector = ".popup_edit-profile";
+const popupEP = document.querySelector(popupEditProfileSelector);
 
-const formName = popupEditProfile.querySelector(".popup__text_parameter_name");
-const formVocation = popupEditProfile.querySelector(
+
+const formName = popupEP.querySelector(".popup__text_parameter_name");
+const formVocation = popupEP.querySelector(
   ".popup__text_parameter_vocation"
 );
 const popupEditProfileForm =
-  popupEditProfile.querySelector(".popup__form");
+popupEP.querySelector(".popup__form");
 
 /* Попап добавления фотографии в галерею */
 const addPhotoButton = document.querySelector(".profile__edit-gallery-button");
-const popupAddPhoto = document.querySelector(".popup_add-photo");
-const formFigcaption = popupAddPhoto.querySelector(
+const popupAddPhotoSelector = ".popup_add-photo";
+const popupAP = document.querySelector(popupAddPhotoSelector);
+const formFigcaption = popupAP.querySelector(
   ".popup__text_parameter_figcaption"
 );
-const formPhotoLink = popupAddPhoto.querySelector(
+const formPhotoLink = popupAP.querySelector(
   ".popup__text_parameter_photo-link"
 );
-const popupAddPhotoForm = popupAddPhoto.querySelector(".popup__form");
+const popupAddPhotoForm = popupAP.querySelector(".popup__form");
 
 /* Попап открытия фотографий */
 const popupFullPhoto = document.querySelector(".popup_full-photo");
@@ -71,10 +74,10 @@ const validationConfig = {
 };
 
 /* Массив попапов и их валидаторов*/
-const popups = [popupEditProfile, popupAddPhoto, popupFullPhoto];
+const popups = [popupFullPhoto];
 
-export {initialCards, editProfileButton, popupEditProfile,
+export {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
-  popupAddPhoto, formFigcaption, formPhotoLink, popupAddPhotoForm,
+  popupAddPhotoSelector, formFigcaption, formPhotoLink, popupAddPhotoForm,
   popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption,
   profileName, profileVocation, galleryList, validationConfig, popups};
