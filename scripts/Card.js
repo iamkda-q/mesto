@@ -1,4 +1,4 @@
-import { popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption } from "./constants.js";
+// import { popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption } from "./constants.js";
 
 export class Card {
   constructor(data, cardSelector, showPopup) {
@@ -16,11 +16,11 @@ export class Card {
     return galleryElement;
   }
 
-  _handleOpenPopup() {
-    popupFullPhotoPhoto.src = this._photoLink;
-    popupFullPhotoPhoto.alt = this._figCaption;
-    popupFullPhotoFigcaption.textContent = this._figCaption;
-  }
+  // _handleOpenPopup() {
+  //   popupFullPhotoPhoto.src = this._photoLink;
+  //   popupFullPhotoPhoto.alt = this._figCaption;
+  //   popupFullPhotoFigcaption.textContent = this._figCaption;
+  // }
 
    _setEventListeners() {
     this._galleryTrash.addEventListener("click", () => {
@@ -33,8 +33,8 @@ export class Card {
     );
 
     this._galleryPhoto.addEventListener("click", () => {
-      this._handleOpenPopup();
-      this._showPopup(popupFullPhoto);
+      // this._handleOpenPopup();
+      this._showPopup(this._photoLink, this._figCaption);
     });
   }
 
