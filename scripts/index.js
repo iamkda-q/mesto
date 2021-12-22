@@ -8,9 +8,9 @@ import {initialCards, editProfileButton, popupEditProfileSelector,
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import Section from "./Section.js";
-import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
 
 const popupEditProfileFormValidator = new FormValidator(validationConfig, popupEditProfileForm);
 popupEditProfileFormValidator.enableValidation();
@@ -59,16 +59,19 @@ function addValueForContent(valueTarget, valueSource) {
   valueTarget.value = valueSource.textContent;
 }
 
+const userInfo = new UserInfo({nameSelector : ".profile__name", vocationSelector : ".profile__vocation"});
 
 const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (evt) => {
     evt.preventDefault(); // отменяет стандартную отправку формы.
-    profileName.textContent = formName.value;
-    profileVocation.textContent = formVocation.value;
-    profileName.title = profileName.textContent;
-    profileVocation.title = profileVocation.textContent;
+    // profileName.textContent = formName.value;
+    // profileVocation.textContent = formVocation.value;
+    // profileName.title = profileName.textContent;
+    // profileVocation.title = profileVocation.textContent;
+    userInfo.setUserInfo(formName.value, formVocation.value);
     popupEditProfile.close();
 });
 popupEditProfile.setEventListeners();
+
 const popupAddPhoto = new PopupWithForm(popupAddPhotoSelector, (evt) => {
     evt.preventDefault(); // отменяет стандартную отправку формы.
     const newCard = new Section({items : [{name: formFigcaption.value, link: formPhotoLink.value}], renderer : (item) => {
@@ -80,6 +83,7 @@ const popupAddPhoto = new PopupWithForm(popupAddPhotoSelector, (evt) => {
     popupAddPhoto.close();
 });
 popupAddPhoto.setEventListeners();
+
 const popupFullPhotoXXL = new PopupWithImage(popupFullPhotoSelector);
 popupFullPhotoXXL.setEventListeners();
 
@@ -93,10 +97,14 @@ const Cards = new Section({items : initialCards, renderer : (item) => {
 /* Добавление шести фотографий из массива */
 Cards.renderItems();
 
+
+
 /* Открытие/закрытие PopupEditProfile */
 editProfileButton.addEventListener("click", () => {
-  addValueForContent(formName, profileName);
-  addValueForContent(formVocation, profileVocation);
+  // addValueForContent(formName, profileName);
+  // addValueForContent(formVocation, profileVocation);
+  const userInfoObject = userInfo.getUserInfo();
+  [formName.value, formVocation.value] = [userInfoObject.name, userInfoObject.vocation];
   popupEditProfileFormValidator.activateButton();
   popupEditProfileFormValidator.resetError();
   // showPopup(popupEditProfile);
@@ -145,5 +153,3 @@ addPhotoButton.addEventListener("click", () => {
 
 
 /* popups.forEach((item) => setPopupCloseListeners(item)); */
-
-
