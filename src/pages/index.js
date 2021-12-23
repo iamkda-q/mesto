@@ -1,5 +1,7 @@
 "use strict";
 
+import './index.css';
+
 import {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
   popupAddPhotoSelector, formFigcaption, formPhotoLink, popupAddPhotoForm,
