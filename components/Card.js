@@ -1,6 +1,4 @@
-import { popupFullPhoto, popupFullPhotoPhoto, popupFullPhotoFigcaption } from "./constants.js";
-
-export class Card {
+export default class Card {
   constructor(data, cardSelector, showPopup) {
     this._figCaption = data.name;
     this._photoLink = data.link;
@@ -16,12 +14,6 @@ export class Card {
     return galleryElement;
   }
 
-  _handleOpenPopup() {
-    popupFullPhotoPhoto.src = this._photoLink;
-    popupFullPhotoPhoto.alt = this._figCaption;
-    popupFullPhotoFigcaption.textContent = this._figCaption;
-  }
-
    _setEventListeners() {
     this._galleryTrash.addEventListener("click", () => {
       this._galleryElement.remove();
@@ -33,8 +25,7 @@ export class Card {
     );
 
     this._galleryPhoto.addEventListener("click", () => {
-      this._handleOpenPopup();
-      this._showPopup(popupFullPhoto);
+      this._showPopup(this._photoLink, this._figCaption);
     });
   }
 
