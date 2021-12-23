@@ -30,36 +30,31 @@ const editProfileButton = document.querySelector(
   ".profile__edit-profile-button"
 );
 const popupEditProfileSelector = ".popup_edit-profile";
-const popupEP = document.querySelector(popupEditProfileSelector);
+const popupEditProfileForm = document.querySelector(popupEditProfileSelector).querySelector(".popup__form");
 
-
-const formName = popupEP.querySelector(".popup__text_parameter_name");
-const formVocation = popupEP.querySelector(
+// Форма с информацией о пользователе
+const formName = document.querySelector(".popup__text_parameter_name");
+const formVocation = document.querySelector(
   ".popup__text_parameter_vocation"
 );
-const popupEditProfileForm =
-popupEP.querySelector(".popup__form");
 
-/* Попап добавления фотографии в галерею */
+/* Попап добавления фотографий в галерею */
 const addPhotoButton = document.querySelector(".profile__edit-gallery-button");
 const popupAddPhotoSelector = ".popup_add-photo";
-const popupAP = document.querySelector(popupAddPhotoSelector);
-const formFigcaption = popupAP.querySelector(
+const popupAddPhotoForm = document.querySelector(popupAddPhotoSelector).querySelector(".popup__form");
+const formFigcaption = document.querySelector(
   ".popup__text_parameter_figcaption"
 );
-const formPhotoLink = popupAP.querySelector(
+const formPhotoLink = document.querySelector(
   ".popup__text_parameter_photo-link"
 );
-const popupAddPhotoForm = popupAP.querySelector(".popup__form");
 
 /* Попап открытия фотографий */
-const popupFullPhotoSelector = /* document.querySelector( */".popup_full-photo"/* ) */;
-// const popupFullPhotoPhoto = popupFullPhoto.querySelector(".popup__photo");
-// const popupFullPhotoFigcaption =
-//   popupFullPhoto.querySelector(".popup__figcaption");
+const popupFullPhotoSelector = ".popup_full-photo";
 
-const profileName = document.querySelector(".profile__name");
-const profileVocation = document.querySelector(".profile__vocation");
+// Информация о пользователе
+const profileNameSelector = ".profile__name";
+const profileVocationSelector = ".profile__vocation";
 
 const galleryList = ".gallery__list";
 
@@ -73,10 +68,7 @@ const validationConfig = {
   cancelButton: ".popup__close-button",
 };
 
-/* Массив попапов и их валидаторов*/
-// const popups = [popupFullPhoto];
-
 export {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
   popupAddPhotoSelector, formFigcaption, formPhotoLink, popupAddPhotoForm,
-  popupFullPhotoSelector, profileName, profileVocation, galleryList, validationConfig};
+  popupFullPhotoSelector, profileNameSelector, profileVocationSelector, galleryList, validationConfig};
