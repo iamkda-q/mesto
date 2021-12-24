@@ -4,7 +4,7 @@ import './index.css';
 
 import {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
-  popupAddPhotoSelector, formFigcaption, formPhotoLink, popupAddPhotoForm,
+  popupAddPhotoSelector, popupAddPhotoForm,
   profileNameSelector, profileVocationSelector, popupFullPhotoSelector,
   galleryList, validationConfig} from "../utils/constants.js";
 
@@ -19,9 +19,9 @@ const userInfo = new UserInfo({nameSelector : profileNameSelector, vocationSelec
 
 const popupFullPhotoXXL = new PopupWithImage(popupFullPhotoSelector);
 
-const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (evt) => {
+const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (evt, inputList) => {
     evt.preventDefault(); // отменяет стандартную отправку формы.
-    userInfo.setUserInfo(formName.value, formVocation.value);
+    userInfo.setUserInfo(inputList["name"], inputList["vocation"]);
     popupEditProfile.close();
 });
 
@@ -29,31 +29,30 @@ const popupEditProfileFormValidator = new FormValidator(validationConfig, popupE
 
 const handleCardClick = popupFullPhotoXXL.open.bind(popupFullPhotoXXL);
 
-const popupAddPhoto = new PopupWithForm(popupAddPhotoSelector, (evt) => {
+function createCard(item) {
+  const cardTemplate = new Card(item, "#gallery-item", handleCardClick);
+  const card = cardTemplate.generateCard();
+  return card;
+}
+
+// Создание "слоя" класса для отрисовки элементов в выбранном контейнере
+const сards = new Section({items : initialCards, renderer : (item) => {
+  сards.addItem(createCard(item));
+}}, galleryList);
+
+/* Добавление шести фотографий из массива */
+сards.renderItems();
+
+const popupAddPhoto = new PopupWithForm(popupAddPhotoSelector, (evt, inputList) => {
     evt.preventDefault(); // отменяет стандартную отправку формы.
-    const newCard = new Section({items : [{name: formFigcaption.value, link: formPhotoLink.value}], renderer : (item) => {
-      const cardTemplate = new Card(item, "#gallery-item", handleCardClick);
-      const card = cardTemplate.generateCard();
-      newCard.addItem(card);
-    }}, galleryList);
-    newCard.renderItems();
+    сards.renderer(inputList);
     popupAddPhoto.close();
 });
 
 const popupAddPhotoFormValidator = new FormValidator(validationConfig, popupAddPhotoForm);
 
-// Создание "слоя" класса для отрисовки элементов в выбранном контейнере
-const Cards = new Section({items : initialCards, renderer : (item) => {
-  const cardTemplate = new Card(item, "#gallery-item", handleCardClick);
-  const card = cardTemplate.generateCard();
-  Cards.addItem(card);
-}}, galleryList);
-
 [popupEditProfile, popupAddPhoto, popupFullPhotoXXL].forEach(popup => popup.setEventListeners());
 [popupEditProfileFormValidator, popupAddPhotoFormValidator].forEach(formValidator => formValidator.enableValidation());
-
-/* Добавление шести фотографий из массива */
-Cards.renderItems();
 
 /* Открытие PopupEditProfile */
 editProfileButton.addEventListener("click", () => {

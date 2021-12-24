@@ -42,12 +42,6 @@ const formVocation = document.querySelector(
 const addPhotoButton = document.querySelector(".profile__edit-gallery-button");
 const popupAddPhotoSelector = ".popup_add-photo";
 const popupAddPhotoForm = document.querySelector(popupAddPhotoSelector).querySelector(".popup__form");
-const formFigcaption = document.querySelector(
-  ".popup__text_parameter_figcaption"
-);
-const formPhotoLink = document.querySelector(
-  ".popup__text_parameter_photo-link"
-);
 
 /* Попап открытия фотографий */
 const popupFullPhotoSelector = ".popup_full-photo";
@@ -70,5 +64,5 @@ const validationConfig = {
 
 export {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
-  popupAddPhotoSelector, formFigcaption, formPhotoLink, popupAddPhotoForm,
+  popupAddPhotoSelector, popupAddPhotoForm,
   popupFullPhotoSelector, profileNameSelector, profileVocationSelector, galleryList, validationConfig};
