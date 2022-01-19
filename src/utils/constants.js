@@ -42,12 +42,6 @@ const formVocation = document.querySelector(
 const addPhotoButton = document.querySelector(".profile__edit-gallery-button");
 const popupAddPhotoSelector = ".popup_add-photo";
 const popupAddPhotoForm = document.querySelector(popupAddPhotoSelector).querySelector(".popup__form");
-const formFigcaption = document.querySelector(
-  ".popup__text_parameter_figcaption"
-);
-const formPhotoLink = document.querySelector(
-  ".popup__text_parameter_photo-link"
-);
 
 /* Попап открытия фотографий */
 const popupFullPhotoSelector = ".popup_full-photo";
@@ -55,6 +49,7 @@ const popupFullPhotoSelector = ".popup_full-photo";
 // Информация о пользователе
 const profileNameSelector = ".profile__name";
 const profileVocationSelector = ".profile__vocation";
+const profileAvatar = ".profile__avatar";
 
 const galleryList = ".gallery__list";
 
@@ -70,5 +65,5 @@ const validationConfig = {
 
 export {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
-  popupAddPhotoSelector, formFigcaption, formPhotoLink, popupAddPhotoForm,
-  popupFullPhotoSelector, profileNameSelector, profileVocationSelector, galleryList, validationConfig};
+  popupAddPhotoSelector, popupAddPhotoForm,
+  popupFullPhotoSelector, profileNameSelector, profileVocationSelector, galleryList, validationConfig, profileAvatar};

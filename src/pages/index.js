@@ -1,12 +1,12 @@
 "use strict";
 
-import './index.css';
+/* import './index.css'; */
 
 import {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
-  popupAddPhotoSelector, formFigcaption, formPhotoLink, popupAddPhotoForm,
+  popupAddPhotoSelector, popupAddPhotoForm,
   profileNameSelector, profileVocationSelector, popupFullPhotoSelector,
-  galleryList, validationConfig} from "../utils/constants.js";
+  galleryList, validationConfig, profileAvatar} from "../utils/constants.js";
 
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -14,14 +14,15 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js"
 
-const userInfo = new UserInfo({nameSelector : profileNameSelector, vocationSelector : profileVocationSelector});
+const userInfo = new UserInfo({nameSelector : profileNameSelector, vocationSelector : profileVocationSelector, avatarSelector: profileAvatar});
 
 const popupFullPhotoXXL = new PopupWithImage(popupFullPhotoSelector);
 
-const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (evt) => {
+const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (evt, inputList) => {
     evt.preventDefault(); // отменяет стандартную отправку формы.
-    userInfo.setUserInfo(formName.value, formVocation.value);
+    userInfo.setUserInfo(inputList["name"], inputList["vocation"]);
     popupEditProfile.close();
 });
 
@@ -29,31 +30,30 @@ const popupEditProfileFormValidator = new FormValidator(validationConfig, popupE
 
 const handleCardClick = popupFullPhotoXXL.open.bind(popupFullPhotoXXL);
 
-const popupAddPhoto = new PopupWithForm(popupAddPhotoSelector, (evt) => {
+function createCard(item) {
+  const cardTemplate = new Card(item, "#gallery-item", handleCardClick);
+  const card = cardTemplate.generateCard();
+  return card;
+}
+
+// Создание "слоя" класса для отрисовки элементов в выбранном контейнере
+const сards = new Section({items : initialCards, renderer : (item) => {
+  сards.addItem(createCard(item));
+}}, galleryList);
+
+/* Добавление шести фотографий из массива */
+сards.renderItems();
+
+const popupAddPhoto = new PopupWithForm(popupAddPhotoSelector, (evt, inputList) => {
     evt.preventDefault(); // отменяет стандартную отправку формы.
-    const newCard = new Section({items : [{name: formFigcaption.value, link: formPhotoLink.value}], renderer : (item) => {
-      const cardTemplate = new Card(item, "#gallery-item", handleCardClick);
-      const card = cardTemplate.generateCard();
-      newCard.addItem(card);
-    }}, galleryList);
-    newCard.renderItems();
+    сards.renderer(inputList);
     popupAddPhoto.close();
 });
 
 const popupAddPhotoFormValidator = new FormValidator(validationConfig, popupAddPhotoForm);
 
-// Создание "слоя" класса для отрисовки элементов в выбранном контейнере
-const Cards = new Section({items : initialCards, renderer : (item) => {
-  const cardTemplate = new Card(item, "#gallery-item", handleCardClick);
-  const card = cardTemplate.generateCard();
-  Cards.addItem(card);
-}}, galleryList);
-
 [popupEditProfile, popupAddPhoto, popupFullPhotoXXL].forEach(popup => popup.setEventListeners());
 [popupEditProfileFormValidator, popupAddPhotoFormValidator].forEach(formValidator => formValidator.enableValidation());
-
-/* Добавление шести фотографий из массива */
-Cards.renderItems();
 
 /* Открытие PopupEditProfile */
 editProfileButton.addEventListener("click", () => {
@@ -70,3 +70,27 @@ addPhotoButton.addEventListener("click", () => {
   popupAddPhotoFormValidator.resetError();
   popupAddPhoto.open();
 });
+
+/* Создание переменной для запросов */
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-34/users/me',
+  headers: {
+    authorization: 'be33cdb8-be40-4c20-b8a9-d95898749c16',
+  }
+});
+
+/* Загрузка данных о пользователе с сервера */
+api.getInitialUserInfo()
+  .then(res => {
+    userInfo.setUserInfo({
+      name: res.name,
+      vocation: res.about
+    })
+    userInfo.setAvatar(res.avatar)
+  });
+
+
+
+
+
+
