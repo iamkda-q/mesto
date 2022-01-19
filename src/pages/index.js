@@ -37,12 +37,12 @@ function createCard(item) {
 }
 
 // Создание "слоя" класса для отрисовки элементов в выбранном контейнере
-const сards = new Section({items : initialCards, renderer : (item) => {
+const сards = new Section(/* {items : initialCards, renderer :  */(item) => { // закоментированный код отвечал за добавление шести карточек с компа
   сards.addItem(createCard(item));
-}}, galleryList);
+}/* } */, galleryList);
 
 /* Добавление шести фотографий из массива */
-сards.renderItems();
+// сards.renderItems();
 
 const popupAddPhoto = new PopupWithForm(popupAddPhotoSelector, (evt, inputList) => {
     evt.preventDefault(); // отменяет стандартную отправку формы.
@@ -73,7 +73,7 @@ addPhotoButton.addEventListener("click", () => {
 
 /* Создание переменной для запросов */
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-34/users/me',
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-34/',
   headers: {
     authorization: 'be33cdb8-be40-4c20-b8a9-d95898749c16',
   }
@@ -88,6 +88,12 @@ api.getInitialUserInfo()
     })
     userInfo.setAvatar(res.avatar)
   });
+
+api.getInitialCards().
+  then(res => {
+    res.forEach(item => сards.renderer(item));
+  });
+
 
 
 
