@@ -1,12 +1,12 @@
 "use strict";
 
-import './index.css';
+/* import './index.css'; */
 
 import {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
   popupAddPhotoSelector, popupAddPhotoForm,
   profileNameSelector, profileVocationSelector, popupFullPhotoSelector,
-  galleryList, validationConfig} from "../utils/constants.js";
+  galleryList, validationConfig, profileAvatar} from "../utils/constants.js";
 
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -14,8 +14,9 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js"
 
-const userInfo = new UserInfo({nameSelector : profileNameSelector, vocationSelector : profileVocationSelector});
+const userInfo = new UserInfo({nameSelector : profileNameSelector, vocationSelector : profileVocationSelector, avatarSelector: profileAvatar});
 
 const popupFullPhotoXXL = new PopupWithImage(popupFullPhotoSelector);
 
@@ -69,3 +70,27 @@ addPhotoButton.addEventListener("click", () => {
   popupAddPhotoFormValidator.resetError();
   popupAddPhoto.open();
 });
+
+/* Создание переменной для запросов */
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-34/users/me',
+  headers: {
+    authorization: 'be33cdb8-be40-4c20-b8a9-d95898749c16',
+  }
+});
+
+/* Загрузка данных о пользователе с сервера */
+api.getInitialUserInfo()
+  .then(res => {
+    userInfo.setUserInfo({
+      name: res.name,
+      vocation: res.about
+    })
+    userInfo.setAvatar(res.avatar)
+  });
+
+
+
+
+
+

@@ -49,6 +49,7 @@ const popupFullPhotoSelector = ".popup_full-photo";
 // Информация о пользователе
 const profileNameSelector = ".profile__name";
 const profileVocationSelector = ".profile__vocation";
+const profileAvatar = ".profile__avatar";
 
 const galleryList = ".gallery__list";
 
@@ -65,4 +66,4 @@ const validationConfig = {
 export {initialCards, editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
   popupAddPhotoSelector, popupAddPhotoForm,
-  popupFullPhotoSelector, profileNameSelector, profileVocationSelector, galleryList, validationConfig};
+  popupFullPhotoSelector, profileNameSelector, profileVocationSelector, galleryList, validationConfig, profileAvatar};
