@@ -36,7 +36,7 @@
 .popup__text{border:none;border-bottom:1px solid rgba(0,0,0,.2);color:#000;font-size:14px;font-weight:400;line-height:1.21;margin:0 0 30px;padding:0 0 9px;width:100%}.popup__text:last-of-type{margin-bottom:48px}
 .popup__text_error{border-bottom:1px solid red}
 .popup__save-button{background:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:18px;font-weight:400;line-height:1.22;margin:0;min-height:50px;text-align:center;width:100%}@media screen and (max-width:560px){.popup__save-button{font-size:14px;line-height:1.21;min-height:46px}}
-.popup__save-button_disable{background:#fff;border:1px solid rgba(0,0,0,.2);color:rgba(0,0,0,.2)}
+.popup__save-button_disable{background:#fff;border:1px solid rgba(0,0,0,.2);color:rgba(0,0,0,.2);cursor:default}
 .popup__close-button{background:none;border:none;bottom:calc(100% + 8px);cursor:pointer;height:32px;left:calc(100% + 8px);padding:0;position:absolute;width:32px}.popup__close-button:after,.popup__close-button:before{border-color:#fff;border-style:solid;border-width:2.5px 21px;content:"";left:calc(50% - 21px);position:absolute;top:calc(50% - 2.5px)}.popup__close-button:before{transform:rotate(-45deg)}.popup__close-button:after{transform:rotate(45deg)}@media screen and (max-width:560px){.popup__close-button{bottom:calc(100% + 16px);height:20px;left:calc(100% - 20px);width:20px}.popup__close-button:after,.popup__close-button:before{border-color:#fff;border-style:solid;border-width:1.5px 14px;left:calc(50% - 14px);top:calc(50% - 1.5px)}}
 .popup__photo{max-height:75vh;width:100%}
 .popup__figcaption{font-size:12px;line-height:1.25;margin:0}
