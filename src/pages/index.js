@@ -23,7 +23,7 @@ const userInfo = new UserInfo({nameSelector : profileNameSelector, vocationSelec
 
 const popupFullPhotoXXL = new PopupWithImage(popupFullPhotoSelector);
 
-function showLoading(target, info) {
+/* function showLoading(target, info) {
   const previousValue = target.textContent;
   target.textContent = info;
   return previousValue;
@@ -33,18 +33,20 @@ function hideLoading(target, previousValue) {
   setTimeout(() => {
     target.textContent = previousValue;
   }, 200) // чтобы текст кнопки обновился только после того, как пропадёт попап
-};
+}; */
 
-const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (evt, {name, vocation}, submitInfo) => {
+const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (evt, {name, vocation}) => {
     evt.preventDefault(); // отменяет стандартную отправку формы.
-    const previousValue = showLoading(submitInfo, "Сохранение...");
+    popupEditProfile.renderLoading();
     api.setUserInfo({name, about: vocation})
     .then(() => {
       userInfo.setUserInfo({name, vocation})
     })
     .finally(() => {
       popupEditProfile.close();
-      hideLoading(submitInfo, previousValue);
+      setTimeout(() => {
+        popupEditProfile.renderLoading(false);
+      }, 200);
     });
 });
 
@@ -52,12 +54,14 @@ const popupEditProfileFormValidator = new FormValidator(validationConfig, popupE
 
 const popupAreYouSure = new PopupAreYouSure(popupAreYouSureSelector, (evt, deleteCard, submitInfo) => {
   evt.preventDefault();
-  const previousValue = showLoading(submitInfo, "Ну тогда удаляем...");
+  popupAreYouSure.renderLoading();
   api.deleteCard(deleteCard())
   .finally(() => {
     popupAreYouSure.close();
-    hideLoading(submitInfo, previousValue);
-  });
+    setTimeout(() => {
+      popupAreYouSure.renderLoading(false);
+    }, 200); // Если не использую setTimeout, то в момент скрытия попапа видно, как надпись на кнопке меняется с "Сохранение" на "Сохранить".
+  });        // подскажите, как не используя setTimeout, изменить надпись на кнопке только после того, как пройдет анимация скрытия попапа.
 });
 
 const handleCardClick = popupFullPhotoXXL.open.bind(popupFullPhotoXXL);
@@ -80,7 +84,7 @@ const сards = new Section((item, myCard, myLike) => {
 
 const popupAddPhoto = new PopupWithForm(popupAddPhotoSelector, (evt, inputList, submitInfo) => {
   evt.preventDefault(); // отменяет стандартную отправку формы.
-  const previousValue = showLoading(submitInfo, "Создание...");
+  popupAddPhoto.renderLoading();
   api.setNewCard(inputList)
     .then(res => res.json())
     .then(res => {
@@ -88,16 +92,18 @@ const popupAddPhoto = new PopupWithForm(popupAddPhotoSelector, (evt, inputList, 
     })
     .finally(() => {
       popupAddPhoto.close();
-      hideLoading(submitInfo, previousValue);
+      setTimeout(() => {
+        popupAddPhoto.renderLoading(false);
+      }, 200);
     });
 
 });
 
 const popupAddPhotoFormValidator = new FormValidator(validationConfig, popupAddPhotoForm);
 
-const popupUpdateAvatar = new PopupWithForm(popupUpdateAvatarSelector, (evt, inputList, submitInfo) => {
+const popupUpdateAvatar = new PopupWithForm(popupUpdateAvatarSelector, (evt, inputList) => {
   evt.preventDefault();
-  const previousValue = showLoading(submitInfo, "Обновление...");
+  popupUpdateAvatar.renderLoading();
   api.updateAvatar(inputList)
   .then(res => res.json())
   .then(res => {
@@ -105,7 +111,9 @@ const popupUpdateAvatar = new PopupWithForm(popupUpdateAvatarSelector, (evt, inp
   })
   .finally(() => {
     popupUpdateAvatar.close();
-    hideLoading(submitInfo, previousValue);
+    setTimeout(() => {
+      popupUpdateAvatar.renderLoading(false);
+    }, 200);
   });
 });
 
