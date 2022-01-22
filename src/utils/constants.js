@@ -1,30 +1,3 @@
-/* Массив с начальными карточками */
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 /* Попап изменения данных о себе любимом */
 const editProfileButton = document.querySelector(
   ".profile__edit-profile-button"
@@ -46,9 +19,17 @@ const popupAddPhotoForm = document.querySelector(popupAddPhotoSelector).querySel
 /* Попап открытия фотографий */
 const popupFullPhotoSelector = ".popup_full-photo";
 
+/* Попап уверености */
+const popupAreYouSureSelector = ".popup_are-you-sure";
+
+/* Попап обновления аватара */
+const popupUpdateAvatarSelector = ".popup_avatar";
+const popupUpdateAvatarForm = document.querySelector(popupUpdateAvatarSelector).querySelector(".popup__form");
+
 // Информация о пользователе
 const profileNameSelector = ".profile__name";
 const profileVocationSelector = ".profile__vocation";
+const profileAvatar = ".profile__avatar";
 
 const galleryList = ".gallery__list";
 
@@ -62,7 +43,15 @@ const validationConfig = {
   cancelButton: ".popup__close-button",
 };
 
-export {initialCards, editProfileButton, popupEditProfileSelector,
+const serverErrors = {
+  401: "Извините, но по какой-то причине вам отказано в доступе.",
+  403: "Извините, но по какой-то причине вам отказано в доступе.",
+  404: "Запрашиваемый вами ресурс отсутствует.",
+  500: "Внутренняя ошибка сервера.",
+};
+
+export {editProfileButton, popupEditProfileSelector,
   formName, formVocation, popupEditProfileForm, addPhotoButton,
   popupAddPhotoSelector, popupAddPhotoForm,
-  popupFullPhotoSelector, profileNameSelector, profileVocationSelector, galleryList, validationConfig};
+  popupFullPhotoSelector, profileNameSelector, profileVocationSelector, galleryList, validationConfig, profileAvatar,
+  popupAreYouSureSelector, popupUpdateAvatarSelector, popupUpdateAvatarForm, serverErrors};
