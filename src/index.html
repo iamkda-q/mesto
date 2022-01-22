@@ -8,18 +8,17 @@
     <meta name="description" content="Фотографии с путешествий">
     <title>Mesto</title>
     <link rel="shortcut icon" href="https://img.icons8.com/color/48/000000/beach.png" type="image/x-icon">
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
     <header class="header">
         <a href="#" class="header__link page__hover page__hover_shade_super-dark">
-            <img src="<%=require('./images/logo.svg')%>" alt="Логотип приложения Место" class="logo header__logo"> <!-- "<%=require()%>" -->
+            <img src="<%=require('./images/logo.svg')%>" alt="Логотип приложения Место" class="logo header__logo">
         </a>
     </header>
     <main class="main">
         <section class="profile">
             <img src='#' alt="аватар пользователя" class="profile__avatar">
-            <img src='./images/change_profile.svg' alt="смена аватара пользователя" class="profile__change-avatar">
+            <img src="<%=require('./images/change_profile.svg')%>" alt="!" class="profile__change-avatar">
             <div class="profile__info">
                 <h1 class="profile__name"></h1>
                 <button type="button" class="profile__edit-profile-button page__hover page__hover_shade_dark" aria-label></button>
