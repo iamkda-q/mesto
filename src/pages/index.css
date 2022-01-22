@@ -28,6 +28,7 @@
 /*стиль gallery*/
 @import url(../blocks/gallery/__list/gallery__list.css);
 @import url(../blocks/gallery/__element/gallery__element.css);
+@import url(../blocks/gallery/__photo-wrapper/gallery__photo-wrapper.css);
 @import url(../blocks/gallery/__photo/gallery__photo.css);
 @import url(../blocks/gallery/__figcaption/gallery__figcaption.css);
 @import url(../blocks/gallery/__like-container/gallery__like-container.css);
