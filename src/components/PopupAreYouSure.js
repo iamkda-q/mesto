@@ -14,11 +14,19 @@ export default class PopupAreYouSure extends Popup{
 
   setEventListeners() {
     super.setEventListeners();
-    this._popupForm.addEventListener("submit", (evt) => this._submitForm(evt, this._func, this._saveButton));
+    this._popupForm.addEventListener("submit", (evt) => this._submitForm(evt, this._func));
   }
 
   close() {
     super.close();
     this._popupForm.reset();
+  }
+
+  renderLoading(isLoading = true) {
+    if (isLoading) {
+      this._saveButton.textContent = "Ну тогда удаляем...";
+    } else {
+      this._saveButton.textContent = "Абсолютли";
+    }
   }
 }
