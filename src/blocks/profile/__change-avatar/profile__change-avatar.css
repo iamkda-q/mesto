@@ -11,5 +11,9 @@
   transition: linear 0.3s;
 }
 
-
+@media screen and (max-width: 660px) {
+  .profile__change-avatar {
+    left: auto;
+  }
+}
 
