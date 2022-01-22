@@ -4,6 +4,7 @@ export default class Popup {
     this._setEscapeClose = this._setEscapeClose.bind(this);
     this._popupCloseButton = this._popup.querySelector(".popup__close-button");
     this._popupContainer = this._popup.querySelector(".popup__container");
+    this._saveButton = this._popup.querySelector(".popup__save-button");
   }
 
   open() {

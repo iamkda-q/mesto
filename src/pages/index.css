@@ -18,6 +18,7 @@
 /*стиль profile*/
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__change-avatar/profile__change-avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__edit-profile-button/profile__edit-profile-button.css);
@@ -29,7 +30,9 @@
 @import url(../blocks/gallery/__element/gallery__element.css);
 @import url(../blocks/gallery/__photo/gallery__photo.css);
 @import url(../blocks/gallery/__figcaption/gallery__figcaption.css);
+@import url(../blocks/gallery/__like-container/gallery__like-container.css);
 @import url(../blocks/gallery/__like/gallery__like.css);
+@import url(../blocks/gallery/__like-count/gallery__like-count.css);
 @import url(../blocks/gallery/__like/_active/gallery__like_active.css);
 @import url(../blocks/gallery/__trash/gallery__trash.css);
 
@@ -44,6 +47,7 @@
 @import url(../blocks/popup/__container/_type/popup__container_type_form.css);
 @import url(../blocks/popup/__container/_type/popup__container_type_photo.css);
 @import url(../blocks/popup/__option/popup__option.css);
+@import url(../blocks/popup/__option/_are-you-sure/popup__option_are-you-sure.css);
 @import url(../blocks/popup/__input-with-error/popup__input-with-error.css);
 @import url(../blocks/popup/__text/popup__text.css);
 @import url(../blocks/popup/__text/_error/popup__text_error.css);
