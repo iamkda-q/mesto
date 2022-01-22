@@ -6,6 +6,7 @@
   grid-template-areas:
   "avatar info add-button";
   column-gap: 2.3vw; /* тема! */
+  position: relative;
 }
 
 @media screen and (max-width: 660px) {
